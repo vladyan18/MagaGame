@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MinFin</class>
+ <widget class="QDialog" name="MinFin">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>749</width>
+    <height>490</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Министерство финансов</string>
+  </property>
+  <widget class="QListWidget" name="listSpheres">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>30</y>
+     <width>381</width>
+     <height>192</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="approveButton">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>410</y>
+     <width>301</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>22</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Подтвердить</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="investmentButton">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>100</y>
+     <width>291</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Увеличить доход в данных сферах</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="playButton">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>270</y>
+     <width>271</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Играть на бирже</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>240</y>
+     <width>721</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>390</y>
+     <width>711</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

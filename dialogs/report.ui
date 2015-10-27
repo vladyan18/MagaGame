@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Report</class>
+ <widget class="QDialog" name="Report">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>908</width>
+    <height>571</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Отчет</string>
+  </property>
+  <widget class="QTextBrowser" name="textBrowser">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>891</width>
+     <height>491</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="approveButton">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>520</y>
+     <width>331</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Хорошо!</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
