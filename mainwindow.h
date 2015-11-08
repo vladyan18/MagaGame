@@ -5,6 +5,8 @@
 #include <QListWidgetItem>
 #include <QWidget>
 #include <QTcpSocket>
+#include <Command.h>
+using namespace std;
 
 
 
@@ -22,7 +24,7 @@ public:
     int role;
     QString text;
     int command;
-    int arg[4];
+    int arg[5];
     int cost;
     List() {
      role = -1;
@@ -31,6 +33,7 @@ public:
      arg[1] = -1;
      arg[2] = -1;
      arg[3] = -1;
+     arg[4] = -1;
      cost = 0;
     }
 };
@@ -64,7 +67,7 @@ public:
 private slots:
 
 
-    void receivedFromForm(int, int, int arg1 = -1, int arg2 = -1, int arg3 = -1);
+    void receivedFromForm(Command);
     void on_listWidget_itemDoubleClicked();
 
     void toStartConnection(QString, int);
@@ -111,16 +114,16 @@ private:
 
     QString *namesOfMins;
     NetTransmitter *transmitter;
-    void presidentSaid(int, int, int, int);
-    void minFinSaid(int, int, int, int);
-    void minDefSaid(int, int, int, int);
-    void KGBSaid(int, int, int, int);
-    void midSaid(int, int, int, int);
-    void minUstSaid(int, int, int, int);
-    void MVDSaid(int, int, int, int);
-    void minComSaid(int, int, int, int);
-    void minHelSaid(int, int, int, int);
-    void zamSaid(int, int, int, int);
+    void presidentSaid(Command);
+    void minFinSaid(Command);
+    void minDefSaid(Command);
+    void KGBSaid(Command);
+    void midSaid(Command);
+    void minUstSaid(Command);
+    void MVDSaid(Command);
+    void minComSaid(Command);
+    void minHelSaid(Command);
+    void zamSaid(Command);
     void updateList();
     void clearList();
 

@@ -2,6 +2,7 @@
 #define MINDEF_H
 
 #include <QDialog>
+#include <Command.h>
 
 
 namespace Ui {
@@ -16,7 +17,7 @@ public:
     explicit MinDef(bool isBlocked, QWidget *parent = 0);
     ~MinDef();
 signals:
-    void sendDataToMainForm(int, int, int, int, int);
+    void sendDataToMainForm(Command);
 
 private slots:
     void on_pushButton_clicked();
@@ -37,8 +38,7 @@ private slots:
 
 private:
     Ui::MinDef *ui;
-    int command;
-    int arg1,arg2,arg3;
+    Command c;
 };
 
 #endif // MINDEF_H

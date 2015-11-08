@@ -2,6 +2,7 @@
 #define KGB_H
 
 #include <QDialog>
+#include <Command.h>
 
 namespace Ui {
 class KGB;
@@ -15,7 +16,7 @@ public:
     explicit KGB(int,bool isBlocked, QWidget *parent = 0);
     ~KGB();
 signals:
-    void sendDataToMainForm(int, int, int, int, int);
+    void sendDataToMainForm(Command);
 
 private slots:
     void on_approveButton_clicked();
@@ -29,10 +30,7 @@ private slots:
     void receiveDataFromDial(int,int);
 private:
     Ui::KGB *ui;
-    int command;
-    int arg1;
-    int arg2;
-    int arg3;
+    Command c;
 };
 
 #endif // KGB_H

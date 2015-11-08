@@ -9,10 +9,7 @@ MVD::MVD(bool isBlocked, QWidget *parent) :
     ui(new Ui::MVD)
 {
     ui->setupUi(this);
-    command = -1;
-    arg1 = -1;
-    arg2 = -1;
-    arg3 = -1;
+    c.args[0] = NUMBER_OF_MINISTRY;
     ui->label->setPixmap(QPixmap("mvd.png"));
 
     if (isBlocked)
@@ -28,7 +25,7 @@ MVD::~MVD()
 
 void MVD::on_suppressRiotButton_clicked()
 {
-    command = 1;
+    c.args[1] = 1;
 
     ui->approveButton->setEnabled(true);
     ui->checkMinButton->setDisabled(true);
@@ -37,7 +34,7 @@ void MVD::on_suppressRiotButton_clicked()
 
 void MVD::on_checkMinButton_clicked()
 {
-    command = 2;
+    c.args[1] = 2;
 
     ui->approveButton->setEnabled(true);
     ui->suppressRiotButton->setDisabled(true);
@@ -53,8 +50,8 @@ void MVD::on_arestMin_clicked()
 
 void MVD::receiveDataFromDial(int com,int choice)
 {
-    command = com;
-    arg1 = choice;
+    c.args[1] = com;
+    c.args[2] = choice;
     ui->approveButton->setEnabled(true);
     ui->suppressRiotButton->setDisabled(true);
     ui->checkMinButton->setDisabled(true);
@@ -62,6 +59,6 @@ void MVD::receiveDataFromDial(int com,int choice)
 
 void MVD::on_approveButton_clicked()
 {
-    emit sendDataToMainForm(NUMBER_OF_MINISTRY, command, arg1, arg2, arg3);
+    emit sendDataToMainForm(c);
     delete this;
 }

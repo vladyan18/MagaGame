@@ -7,10 +7,7 @@ President::President(bool isBlocked, QWidget *parent) :
     ui(new Ui::President)
 {
     ui->setupUi(this);
-    command = -1;
-    arg1 = -1;
-    arg2 = -1;
-    arg3 = -1;
+    c.args[0] = 1;
 
 }
 
@@ -23,7 +20,7 @@ President::~President()
 
 void President::on_approveButton_clicked()
 {
-    sendDataToMainForm(1, command, arg1, arg2, arg3);
+    sendDataToMainForm(c);
     delete this;
 }
 
@@ -37,8 +34,8 @@ void President::on_fireMin_clicked()
 
 void President::receiveDataFromDial(int com, int choice)
 {
-    command = com;
-    arg1 = choice;
+    c.args[1] = com;
+    c.args[2] = choice;
     ui->approveButton->setEnabled(true);
 
 }

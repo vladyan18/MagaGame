@@ -6,10 +6,7 @@ MinCom::MinCom(bool isBlocked, QWidget *parent) :
     ui(new Ui::MinCom)
 {
    ui->setupUi(this);
-    command = -1;
-    arg1 = -1;
-    arg2 = -1;
-    arg3 = -1;
+    c.args[0] = 8;
     ui->label_2->setPixmap(QPixmap("gerb.png").scaledToHeight(ui->label_2->height()));
     ui->label_3->setToolTip("Незнание - сила. \n Свобода - это рабство. \n Война - это мир.");
     ui->label_3->setToolTipDuration(10000);
@@ -29,14 +26,14 @@ MinCom::~MinCom()
 
 void MinCom::on_approveButton_clicked()
 {
-    emit sendDataToMainForm(8, command, arg1,arg2,arg3);
+    emit sendDataToMainForm(c);
     delete this;
 }
 
 void MinCom::on_sayToMediaButton_clicked()
 {
-    command = 1;
-    arg1 = ui->numOfCountrySpinBox->value();
+    c.args[1] = 1;
+    c.args[2] = ui->numOfCountrySpinBox->value();
 
     ui->refLiesButton->setDisabled(true);
     ui->improveMoodButton->setDisabled(true);
@@ -47,7 +44,7 @@ void MinCom::on_sayToMediaButton_clicked()
 
 void MinCom::on_refLiesButton_clicked()
 {
-    command = 2;
+    c.args[1] = 2;
 
     ui->sayToMediaButton->setDisabled(true);
     ui->improveMoodButton->setDisabled(true);
@@ -58,7 +55,7 @@ void MinCom::on_refLiesButton_clicked()
 
 void MinCom::on_improveMoodButton_clicked()
 {
-    command = 3;
+    c.args[1] = 3;
 
     ui->refLiesButton->setDisabled(true);
     ui->sayToMediaButton->setDisabled(true);
@@ -69,8 +66,8 @@ void MinCom::on_improveMoodButton_clicked()
 
 void MinCom::on_makeRiotButton_clicked()
 {
-    command = 4;
-    arg1 = ui->numOfCountrySpinBox->value();
+    c.args[1] = 4;
+    c.args[2] = ui->numOfCountrySpinBox->value();
 
     ui->refLiesButton->setDisabled(true);
     ui->improveMoodButton->setDisabled(true);

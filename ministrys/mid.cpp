@@ -7,12 +7,7 @@ MID::MID(bool isBlocked, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MID)
 {
-
-
-    command = -1;
-    arg1 = -1;
-    arg2 = -1;
-    arg3 = -1;
+    c.args[0] = 5;
 
     ui->setupUi(this);
 
@@ -38,7 +33,7 @@ void MID::on_diversionButton_clicked()
     PickTheMin *pickDial = new PickTheMin(1,0);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
     pickDial->show();
-    arg1 = ui->numOfCountrySpinBox->value();
+    c.args[2] = ui->numOfCountrySpinBox->value();
 
 
 
@@ -54,7 +49,7 @@ void MID::on_hookButton_clicked()
     PickTheMin *pickDial = new PickTheMin(2,0);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
     pickDial->show();
-    arg1 = ui->numOfCountrySpinBox->value();
+    c.args[2] = ui->numOfCountrySpinBox->value();
 
 
 
@@ -71,7 +66,7 @@ void MID::on_freeButton_clicked()
     PickTheMin *pickDial = new PickTheMin(3,0);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
     pickDial->show();
-    arg1 = ui->numOfCountrySpinBox->value();
+    c.args[2] = ui->numOfCountrySpinBox->value();
 
 
 
@@ -87,7 +82,7 @@ void MID::on_orderButton_clicked()
     PickTheMin *pickDial = new PickTheMin(4,0);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
     pickDial->show();
-    arg1 = ui->numOfCountrySpinBox->value();
+    c.args[2] = ui->numOfCountrySpinBox->value();
 
 
 
@@ -103,7 +98,7 @@ void MID::on_killButton_clicked()
     PickTheMin *pickDial = new PickTheMin(5,0);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
     pickDial->show();
-    arg1 = ui->numOfCountrySpinBox->value();
+    c.args[2] = ui->numOfCountrySpinBox->value();
 
 
     ui->diversionButton->setDisabled(true);
@@ -118,7 +113,7 @@ void MID::on_spyButton_clicked()
     PickTheMin *pickDial = new PickTheMin(6,0);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
     pickDial->show();
-    arg1 = ui->numOfCountrySpinBox->value();
+    c.args[2] = ui->numOfCountrySpinBox->value();
 
 
     ui->diversionButton->setDisabled(true);
@@ -131,13 +126,15 @@ void MID::on_spyButton_clicked()
 void MID::on_approveButton_clicked()
 {
 
-    emit sendDataToMainForm(5, command, arg1, arg2, arg3);
+    c.args[0] = 5;
+    emit sendDataToMainForm(c);
     delete this;
 }
 void MID::receiveDataFromDial(int com,int choice)
 {
-    command = com;
-    arg2 = choice;
+
+    c.args[1] = com;
+    c.args[3] = choice;
     ui->approveButton->setEnabled(true);
 }
 

@@ -97,14 +97,14 @@ MainWindow::~MainWindow()
 void MainWindow::on_presidentButton_clicked()
 {
 President *PresDial = new President(mins[0].isBlocked);
-connect(PresDial,SIGNAL(sendDataToMainForm(int, int, int, int, int)),this,SLOT(receivedFromForm(int, int, int, int, int)));
+connect(PresDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 PresDial->show();
 }
 
 void MainWindow::on_minFinButton_clicked()
 {
 MinFin *FinDial = new MinFin(mins[1].isBlocked);
-connect(FinDial,SIGNAL(sendDataToMainForm(int, int, int, int, int)),this,SLOT(receivedFromForm(int, int, int, int, int)));
+connect(FinDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 FinDial->show();
 
 }
@@ -112,49 +112,49 @@ FinDial->show();
 void MainWindow::on_minDefButton_clicked()
 {
 MinDef *defDial = new MinDef(mins[2].isBlocked);
-connect(defDial,SIGNAL(sendDataToMainForm(int, int, int, int, int)),this,SLOT(receivedFromForm(int, int, int, int, int)));
+connect(defDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 defDial->show();
 }
 
 void MainWindow::on_kgbButton_clicked()
 {
 KGB *KGBDial = new KGB(kgbpower, mins[3].isBlocked);
-connect(KGBDial,SIGNAL(sendDataToMainForm(int, int, int, int, int)),this,SLOT(receivedFromForm(int, int, int, int, int)));
+connect(KGBDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 KGBDial->show();
 }
 
 void MainWindow::on_midButton_clicked()
 {
 MID *MIDDial = new MID(mins[4].isBlocked);
-connect(MIDDial,SIGNAL(sendDataToMainForm(int, int, int, int, int)),this,SLOT(receivedFromForm(int, int, int, int, int)));
+connect(MIDDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 MIDDial->show();
 }
 
 void MainWindow::on_minUstButton_clicked()
 {
 MINUST *MINUSTDial = new MINUST(mins[5].isBlocked);
-connect(MINUSTDial,SIGNAL(sendDataToMainForm(int, int, int, int, int)),this,SLOT(receivedFromForm(int, int, int, int, int)));
+connect(MINUSTDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 MINUSTDial->show();
 }
 
 void MainWindow::on_mvdButton_clicked()
 {
 MVD *MVDDial = new MVD(mins[6].isBlocked);
-connect(MVDDial,SIGNAL(sendDataToMainForm(int, int, int, int, int)),this,SLOT(receivedFromForm(int, int, int, int, int)));
+connect(MVDDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 MVDDial->show();
 }
 
 void MainWindow::on_minComButton_clicked()
 {
 MinCom *MinComDial = new MinCom(mins[7].isBlocked);
-connect(MinComDial,SIGNAL(sendDataToMainForm(int, int, int, int, int)),this,SLOT(receivedFromForm(int, int, int, int, int)));
+connect(MinComDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 MinComDial->show();
 }
 
 void MainWindow::on_minHelButton_clicked()
 {
 MinHel *MinHelDial = new MinHel(mins[8].isBlocked);
-connect(MinHelDial,SIGNAL(sendDataToMainForm(int, int, int, int, int)),this,SLOT(receivedFromForm(int, int, int, int, int)));
+connect(MinHelDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 MinHelDial->show();
 }
 
@@ -162,7 +162,7 @@ MinHelDial->show();
 void MainWindow::on_secretaryButton_clicked()
 {
 Secretary *SecretaryDial = new Secretary();
-connect(SecretaryDial,SIGNAL(sendDataToMainForm(int, int, int, int, int)),this,SLOT(receivedFromForm(int, int, int, int, int)));
+connect(SecretaryDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 SecretaryDial->show();
 }
 
@@ -177,37 +177,40 @@ void MainWindow::on_statButton_clicked()
     stat->show();
 }
 
-void MainWindow::receivedFromForm(int role,int command, int arg1, int arg2, int arg3)
-{ switch (role) {
+void MainWindow::receivedFromForm(Command c)
+{
+    qDebug() << c.args[0] << " " << c.args[1] << " " <<c.args[2] << " " <<c.args[3] << " " << c.args[4]
+                           << " " << c.args[5] << " " << c.args[6];
+    switch (c.args[0]) {
     case 1: //Президент
-        presidentSaid(command, arg1, arg2, arg3);
+        presidentSaid(c);
         break;
     case 2: //Министр финансов
-        minFinSaid(command, arg1,arg2,arg3);
+        minFinSaid(c);
         break;
     case 3: //Министр обороны
-        minDefSaid(command, arg1, arg2, arg3);
+        minDefSaid(c);
         break;
     case 4: //Директор КГБ
-        KGBSaid(command, arg1, arg2, arg3);
+        KGBSaid(c);
         break;
     case 5: //Министр иностранных дел
-        midSaid(command, arg1, arg2, arg3);
+        midSaid(c);
         break;
     case 6: //Министр юстиции
-        minUstSaid(command, arg1, arg2, arg3);
+        minUstSaid(c);
         break;
     case 7: //Министр Внутренних Дел
-        MVDSaid(command, arg1, arg2, arg3);
+        MVDSaid(c);
         break;
     case 8: //Министр по связям с общ
-        minComSaid(command, arg1, arg2, arg3);
+        minComSaid(c);
         break;
     case 9: //Министр здравоохранения
-        minHelSaid(command, arg1, arg2, arg3);
+        minHelSaid(c);
         break;
     case 10: //Заместитель
-        zamSaid(command, arg1, arg2, arg3);
+        zamSaid(c);
         break;
     }
 }
@@ -242,6 +245,7 @@ void MainWindow::clearList()
         cmds[i].arg[1] = -1;
         cmds[i].arg[2] = -1;
         cmds[i].arg[3] = -1;
+        cmds[i].arg[4] = -1;
         cmds[i].cost=0;
     }
 
@@ -454,34 +458,35 @@ void MainWindow::on_listWidget_itemDoubleClicked()
     cmds[*row].arg[1] = -1;
     cmds[*row].arg[2] = -1;
     cmds[*row].arg[3] = -1;
+    cmds[*row].arg[4] = -1;
     cmds[*row].cost = 0;
     updateList();
     delete row;
 }
 
-void MainWindow::presidentSaid(int command, int arg1, int arg2, int arg3)
+void MainWindow::presidentSaid(Command c)
 {
     int *row = new int;
     *row = ui->listWidget->currentRow();
     cmds[*row].role = 1;
-    cmds[*row].command = command;
+    cmds[*row].command = c.args[1];
 
 
-    switch (command)
+    switch (c.args[1])
     {
     case 0:
         cmds[*row].text = QString::number(*row+1) +": Повышение квалификации " + namesOfMins[cmds[*row].role-1];
         cmds[*row].cost= COST_OF_LVLUP;
         break;
     case 1:
-        cmds[*row].text = QString::number(*row+1) +": Увольнение " + namesOfMins[arg1 - 1];
-        cmds[*row].arg[0]=arg1;
+        cmds[*row].text = QString::number(*row+1) +": Увольнение " + namesOfMins[c.args[2] - 1];
+        cmds[*row].arg[0]=c.args[2];
         cmds[*row].cost=0;
         break;
 
     case -2:
-        cmds[*row].text = QString::number(*row+1) +": Оказание помощи президентом в делах " + namesOfMins[arg1 - 1];
-        cmds[*row].arg[0]=arg1;
+        cmds[*row].text = QString::number(*row+1) +": Оказание помощи президентом в делах " + namesOfMins[c.args[2] - 1];
+        cmds[*row].arg[0]=c.args[2];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -494,23 +499,24 @@ void MainWindow::presidentSaid(int command, int arg1, int arg2, int arg3)
 
 }
 
-void MainWindow::minFinSaid(int command, int arg1, int arg2, int arg3)
+void MainWindow::minFinSaid(Command c)
 {
     int *row = new int;
     *row = ui->listWidget->currentRow();
     cmds[*row].role = 2;
+    cmds[*row].command = c.args[1];
 
-    switch(command) {
+    switch(c.args[1]) {
     case 0:
         cmds[*row].text = QString::number(*row+1) +": Повышение квалификации министра финансов";
         cmds[*row].cost= COST_OF_LVLUP;
         break;
     case 1:
         cmds[*row].text = QString::number(*row+1) +": Инвестиции в сектора экономики:  ";
-        if (arg1==1)
+        if (c.args[2]==1)
         {
             cmds[*row].text += "Сельское хозяйство, ";
-            if (arg2==2) {
+            if (c.args[3]==2) {
             cmds[*row].text += "Машиностроение";
             } else {
             cmds[*row].text += "Текстиль";
@@ -519,17 +525,16 @@ void MainWindow::minFinSaid(int command, int arg1, int arg2, int arg3)
             cmds[*row].text += "Машиностроение, Текстиль";
         }
 
-        cmds[*row].command = 1;
-        cmds[*row].arg[0] = arg1;
-        cmds[*row].arg[1] = arg2;
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
         cmds[*row].cost = COST_OF_INVESTMENT;
         break;
     case 2:
         // TODO
         break;
     case -2:
-        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром финансов в делах " + namesOfMins[arg1 - 1];
-        cmds[*row].arg[0]=arg1;
+        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром финансов в делах " + namesOfMins[c.args[2] - 1];
+        cmds[*row].arg[0]=c.args[2];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -541,67 +546,66 @@ void MainWindow::minFinSaid(int command, int arg1, int arg2, int arg3)
    delete row;
 }
 
-void MainWindow::minDefSaid(int command, int arg1, int arg2, int arg3)
+void MainWindow::minDefSaid(Command c)
 {
     int *row = new int;
     *row = ui->listWidget->currentRow();
     cmds[*row].role = 3;
-    cmds[*row].command = command;
-    switch (command) {
+    cmds[*row].command = c.args[1];
+    switch (c.args[1]) {
     case 0:
         cmds[*row].text = QString::number(*row+1) +": Повышение квалификации министра обороны";
         cmds[*row].cost= COST_OF_LVLUP;
         break;
     case 1:
-        cmds[*row].text = QString::number(*row+1) +": Изменение числа ядерных ракет " + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Изменение числа ядерных ракет " + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
 
-        if (arg1>0)
+        if (c.args[2]>0)
         {
-            cmds[*row].cost = abs(arg1) * COST_OF_NUKE_CREATION;
+            cmds[*row].cost = abs(c.args[2]) * COST_OF_NUKE_CREATION;
         } else {
-            cmds[*row].cost = abs(arg1) * COST_OF_NUKE_DESTRUCTION;
+            cmds[*row].cost = abs(c.args[2]) * COST_OF_NUKE_DESTRUCTION;
         }
 
         break;
     case 2:
-        cmds[*row].text = QString::number(*row+1) +": Изменение числа ПРО " + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Изменение числа ПРО " + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
 
-        if (arg1 > 0)
+        if (c.args[2] > 0)
         {
-            cmds[*row].cost = abs(arg1) * COST_OF_PRO_CREATION;
+            cmds[*row].cost = abs(c.args[2]) * COST_OF_PRO_CREATION;
         } else {
-            cmds[*row].cost = abs(arg1) * COST_OF_PRO_DESTRUCTION;
+            cmds[*row].cost = abs(c.args[2]) * COST_OF_PRO_DESTRUCTION;
         }
         break;
     case 3:
-        cmds[*row].text = QString::number(*row+1) +": НАНЕСЕНИЕ ЯДЕРНОГО УДАРА ПО СТРАНЕ №" + QString::number(arg1)
-                + " число ракет:" + QString::number(arg2) + " число попаданий:" + QString::number(arg3);
-        cmds[*row].arg[0] = arg1;
-        cmds[*row].arg[1] = arg2;
-        cmds[*row].arg[2] = arg3;
+        cmds[*row].text = QString::number(*row+1) +": НАНЕСЕНИЕ ЯДЕРНОГО УДАРА ПО СТРАНЕ №" + QString::number(c.args[2])
+                + " число ракет:" + QString::number(c.args[3]);
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
         break;
     case 4:
-        cmds[*row].text = QString::number(*row+1) +": Сбить ядерную ракету. Число противоракет:" + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Сбить ядерную ракету. Число противоракет:" + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
         break;
     case 5:
-        cmds[*row].text = QString::number(*row+1) +": Отмена ядерного удара по стране №" + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Отмена ядерного удара по стране №" + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
         break;
     case 6:
-        cmds[*row].text = QString::number(*row+1) +": Атака сухопутными силами на страну №" + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Атака сухопутными силами на страну №" + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
         break;
     case 7:
-        cmds[*row].text = QString::number(*row+1) +": Набег на страну №" + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Набег на страну №" + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost = COST_OF_RAID;
         break;
     case -2:
-        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром обороны в делах " + namesOfMins[arg1 - 1];
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром обороны в делах " + namesOfMins[c.args[2] - 1];
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -613,33 +617,33 @@ void MainWindow::minDefSaid(int command, int arg1, int arg2, int arg3)
    delete row;
 }
 
-void MainWindow::KGBSaid(int command, int arg1, int arg2, int arg3)
+void MainWindow::KGBSaid(Command c)
 {
     int *row = new int;
     *row = ui->listWidget->currentRow();
     cmds[*row].role = 4;
-    cmds[*row].command = command;
-    switch(command) {
+    cmds[*row].command = c.args[1];
+    switch(c.args[1]) {
     case 0:
         cmds[*row].text = QString::number(*row+1) +": Повышение квалификации главы КГБ";
         cmds[*row].cost= COST_OF_LVLUP;
         break;
     case 1:
-        cmds[*row].text = QString::number(*row+1) +": Защита " + namesOfMins[arg1-1] + " от иностранного воздействия с силой: "
-              + QString::number(arg2) + "%";
-        cmds[*row].arg[0] = arg1;
-        cmds[*row].arg[1] = arg2;
+        cmds[*row].text = QString::number(*row+1) +": Защита " + namesOfMins[c.args[2]-1] + " от иностранного воздействия с силой: "
+              + QString::number(c.args[3]) + "%";
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
         cmds[*row].cost = COST_OF_MINISTER_DEFENCE;
-        kgbpower -= arg2;
+        kgbpower -= c.args[3];
         break;
     case 2:
-        cmds[*row].text = QString::number(*row+1) +": Поиск министра внешней разведки государства №" + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Поиск министра внешней разведки государства №" + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost = COST_OF_FINDING_MINISTER;
         break;
     case -2:
-        cmds[*row].text = QString::number(*row+1) +": Оказание главой КГБ в делах " + namesOfMins[arg1 - 1];
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Оказание главой КГБ в делах " + namesOfMins[c.args[2] - 1];
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -651,65 +655,67 @@ void MainWindow::KGBSaid(int command, int arg1, int arg2, int arg3)
     delete row;
 }
 
-void MainWindow::midSaid(int command, int arg1, int arg2, int arg3)
+void MainWindow::midSaid(Command c)
 {
     int *row = new int;
     *row = ui->listWidget->currentRow();
     cmds[*row].role = 5;
-    cmds[*row].command = command;
+    cmds[*row].command = c.args[1];
 
-    switch (command)
+    switch (c.args[1])
     {
     case 0:
         cmds[*row].text = QString::number(*row+1) +": Повышение квалификации министра иностранных дел";
         cmds[*row].cost= COST_OF_LVLUP;
         break;
     case 1:
-        cmds[*row].text = QString::number(*row+1) +": Диверсия в государстве №" + QString::number(arg1) + " в делах  "
-                + namesOfMins[arg2-1];
-        cmds[*row].arg[0] = arg1;
-        cmds[*row].arg[1] = arg2;
+        cmds[*row].text = QString::number(*row+1) +": Диверсия в государстве №" + QString::number(c.args[2]) + " в делах  "
+                + namesOfMins[c.args[3]-1];
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
         cmds[*row].cost = COST_OF_DIVERSION;
         break;
     case 2:
-        cmds[*row].text = QString::number(*row+1) +": Вербовка " + namesOfMins[arg2-1] + " в государстве №"
-                + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
-        cmds[*row].arg[1] = arg2;
+        cmds[*row].text = QString::number(*row+1) +": Вербовка " + namesOfMins[c.args[3]-1] + " в государстве №"
+                + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
         cmds[*row].cost = COST_OF_HOOKING;
         break;
     case 3:
-        cmds[*row].text = QString::number(*row+1) +": Освобождение " + namesOfMins[arg2-1] + " в государстве №"
-                + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
-        cmds[*row].arg[1] = arg2;
+        cmds[*row].text = QString::number(*row+1) +": Освобождение " + namesOfMins[c.args[3]-1] + " в государстве №"
+                + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
         cmds[*row].cost = 0;
         break;
     case 4:
-        cmds[*row].text = QString::number(*row+1) +": Приказ министру №" + QString::number(arg2) + " в государстве №"
-                + QString::number(arg1); //TODO
-        cmds[*row].arg[0] = arg1;
-        cmds[*row].arg[1] = arg2;
-        cmds[*row].arg[2] = arg3;
-        cmds[*row].cost = 0; //TODO
+        cmds[*row].text = QString::number(*row+1) +": Приказ министру №" + QString::number(c.args[3]) + " в государстве №"
+                + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
+        cmds[*row].arg[2] = c.args[4];
+        cmds[*row].arg[3] = c.args[5];
+        cmds[*row].arg[4] = c.args[6];
+        cmds[*row].cost = 0;
         break;
     case 5:
-        cmds[*row].text = QString::number(*row+1) +": Убить " + namesOfMins[arg2-1]  + " в государстве №"
-                + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
-        cmds[*row].arg[1] = arg2;
+        cmds[*row].text = QString::number(*row+1) +": Убить " + namesOfMins[c.args[3]-1]  + " в государстве №"
+                + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
         cmds[*row].cost = COST_OF_KILLING;
         break;
     case 6:
-        cmds[*row].text = QString::number(*row+1) +": Шпионаж за делами " + namesOfMins[arg2-1] + " в государстве №"
-                + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
-        cmds[*row].arg[1] = arg2;
+        cmds[*row].text = QString::number(*row+1) +": Шпионаж за делами " + namesOfMins[c.args[3]-1] + " в государстве №"
+                + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
         cmds[*row].cost = COST_OF_SPY;
         break;
     case -2:
-        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром иностранных дел в делах " + namesOfMins[arg1 - 1];
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром иностранных дел в делах " + namesOfMins[c.args[2] - 1];
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -721,26 +727,26 @@ void MainWindow::midSaid(int command, int arg1, int arg2, int arg3)
     delete row;
 }
 
-void MainWindow::minUstSaid(int command, int arg1, int arg2, int arg3)
+void MainWindow::minUstSaid(Command c)
 {
     int *row = new int;
     *row = ui->listWidget->currentRow();
     cmds[*row].role = 6;
-    cmds[*row].command = command;
-    switch (command)
+    cmds[*row].command = c.args[1];
+    switch (c.args[1])
     {
     case 0:
         cmds[*row].text = QString::number(*row+1) +": Повышение квалификации министра юстиции";
         cmds[*row].cost= COST_OF_LVLUP;
         break;
     case 1:
-        cmds[*row].text = QString::number(*row+1) +": Иск в Международный суд на государство №" + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Иск в Международный суд на государство №" + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost = COST_OF_COURT;
         break;
     case -2:
-        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром юстиции в делах " + namesOfMins[arg1 - 1];
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром юстиции в делах " + namesOfMins[c.args[2] - 1];
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -753,13 +759,13 @@ void MainWindow::minUstSaid(int command, int arg1, int arg2, int arg3)
     delete row;
 }
 
-void MainWindow::MVDSaid(int command, int arg1, int arg2, int arg3)
+void MainWindow::MVDSaid(Command c)
 {
     int *row = new int;
     *row = ui->listWidget->currentRow();
     cmds[*row].role = 7;
-    cmds[*row].command = command;
-    switch (command)
+    cmds[*row].command = c.args[1];
+    switch (c.args[1])
     {
     case 0:
         cmds[*row].text = QString::number(*row+1) +": Повышение квалификации министра внутренних дел";
@@ -774,13 +780,13 @@ void MainWindow::MVDSaid(int command, int arg1, int arg2, int arg3)
         cmds[*row].cost = COST_OF_CHECK_MIN;
         break;
     case 3:
-        cmds[*row].text = QString::number(*row+1) +": Арест " + namesOfMins[arg1-1];
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Арест " + namesOfMins[c.args[2]-1];
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost = COST_OF_AREST;
         break;
     case -2:
-        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром внутренних дел в делах " + namesOfMins[arg1 - 1];
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром внутренних дел в делах " + namesOfMins[c.args[2] - 1];
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -793,21 +799,21 @@ void MainWindow::MVDSaid(int command, int arg1, int arg2, int arg3)
     delete row;
 }
 
-void MainWindow::minComSaid(int command, int arg1, int arg2, int arg3)
+void MainWindow::minComSaid(Command c)
 {
     int *row = new int;
     *row = ui->listWidget->currentRow();
     cmds[*row].role = 8;
-    cmds[*row].command = command;
-    switch (command)
+    cmds[*row].command = c.args[1];
+    switch (c.args[1])
     {
     case 0:
         cmds[*row].text = QString::number(*row+1) +": Повышение квалификации министра по связям с общественностью";
         cmds[*row].cost= COST_OF_LVLUP;
         break;
     case 1:
-        cmds[*row].text = QString::number(*row+1) +": Заявление в международные СМИ о государстве №" + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Заявление в международные СМИ о государстве №" + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost = COST_OF_CLAIM;
         break;
     case 2:
@@ -819,13 +825,13 @@ void MainWindow::minComSaid(int command, int arg1, int arg2, int arg3)
         cmds[*row].cost = COST_OF_PROPOGANDA;
         break;
     case 4:
-        cmds[*row].text = QString::number(*row+1) +": Разжигание недовольства в государстве №" + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Разжигание недовольства в государстве №" + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost = COST_OF_INC_RIOT;
         break;
     case -2:
-        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром по связям с общественностью в делах " + namesOfMins[arg1 - 1];
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром по связям с общественностью в делах " + namesOfMins[c.args[2] - 1];
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -838,31 +844,31 @@ void MainWindow::minComSaid(int command, int arg1, int arg2, int arg3)
     delete row;
 }
 
-void MainWindow::minHelSaid(int command, int arg1, int arg2, int arg3)
+void MainWindow::minHelSaid(Command c)
 {
     int *row = new int;
     *row = ui->listWidget->currentRow();
     cmds[*row].role = 9;
-    cmds[*row].command = command;
-    switch (command)
+    cmds[*row].command = c.args[1];
+    switch (c.args[1])
     {
     case 0:
         cmds[*row].text = QString::number(*row+1) +": Повышение квалификации министра здравоохранения";
         cmds[*row].cost= COST_OF_LVLUP;
         break;
     case 1:
-        cmds[*row].text = QString::number(*row+1) +": Вакцинирование населения от вируса №" + QString::number(arg1);
-        cmds[*row].arg[0]  = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Вакцинирование населения от вируса №" + QString::number(c.args[2]);
+        cmds[*row].arg[0]  = c.args[2];
         cmds[*row].cost = COST_OF_VACIINE;
         break;
     case 2:
-        cmds[*row].text = QString::number(*row+1) +": Заражение вирусом государства №" + QString::number(arg1);
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Заражение вирусом государства №" + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost = COST_OF_INFECT;
         break;
     case -2:
-        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром здравоохранения в делах " + namesOfMins[arg1 - 1];
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром здравоохранения в делах " + namesOfMins[c.args[2] - 1];
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -875,16 +881,16 @@ void MainWindow::minHelSaid(int command, int arg1, int arg2, int arg3)
     delete row;
 }
 
-void MainWindow::zamSaid(int command, int arg1, int arg2, int arg3) //TODO
+void MainWindow::zamSaid(Command c) //TODO
 {   int *row = new int;
     *row = ui->listWidget->currentRow();
     cmds[*row].role = 10;
-    cmds[*row].command = command;
-    switch(command)
+    cmds[*row].command = c.args[1];
+    switch(c.args[1])
     {
     case -2:
-        cmds[*row].text = QString::number(*row+1) +": Оказание помощи заместителем в делах " + namesOfMins[arg1 - 1];
-        cmds[*row].arg[0] = arg1;
+        cmds[*row].text = QString::number(*row+1) +": Оказание помощи заместителем в делах " + namesOfMins[c.args[2] - 1];
+        cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -906,7 +912,7 @@ void MainWindow::on_approvePlan_clicked()
   for (int i = 0; i<listSize; i++)
   {
       stream << cmds[i].role << " " << cmds[i].command << " " << cmds[i].arg[0] << " " << cmds[i].arg[1] << " "
-      << cmds[i].arg[2] << " " << cmds[i].arg[3] << "\n";
+      << cmds[i].arg[2] << " " << cmds[i].arg[3] << " " << cmds[i].arg[4] << "\n";
   }
   of.close();
 
@@ -953,18 +959,23 @@ QString MainWindow::beautifyNumber(int num)
 
 void MainWindow::readData() // REMAKE
 {
-
+   QString outputCodes;
    QFile in("dataFromServer.txt");
    in.open(QFile::ReadOnly);
    QString temp = in.readAll();
    in.close();
    QTextStream stream(&temp);
-   stream >> cash >> numNukes >> numPRO;
+   stream >> cash >> numNukes >> numPRO >> happinesOfPopulation;
 
    for (int i = 0;i<10;i++)
    {
        stream >> mins[i].lvl;
    }
+   stream.read(2);
+   outputCodes = stream.readLine();
+   qDebug() << "OC: " << outputCodes;
+
+   repDial->addCodes(outputCodes);
 
    List *t = new List;
    int *result = new int;
@@ -974,7 +985,7 @@ void MainWindow::readData() // REMAKE
        if (!stream.atEnd())
        {
        stream >> t->command >> t->arg[0]
-              >> t->arg[1] >> t->arg[2] >> t->arg[3]
+              >> t->arg[1] >> t->arg[2] >> t->arg[3] >> t->arg[4]
               >> *result;
        repDial->addCommand(t, *result);
        }

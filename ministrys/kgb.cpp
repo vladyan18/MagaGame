@@ -16,16 +16,12 @@ KGB::KGB(int power,bool isBlocked, QWidget *parent) :
         ui->powerSpinBox->setDisabled(true);
     }
 
-    command = -1;
-    arg1 = -1;
-    arg2 = -1;
-    arg3 = -1;
-
     if (isBlocked)
     {
         ui->findMinButton->setDisabled(true);
     }
 
+    c.args[0] = 4;
 
 }
 
@@ -45,8 +41,8 @@ void KGB::on_defRolesButton_clicked()
 
 void KGB::on_findMinButton_clicked()
 {
-    command = 2;
-    arg1 = ui->numOfCountrySpinBox->value();
+    c.args[1] = 2;
+    c.args[2] = ui->numOfCountrySpinBox->value();
 
     ui->defRolesButton->setDisabled(true);
     ui->approveButton->setEnabled(true);
@@ -54,9 +50,9 @@ void KGB::on_findMinButton_clicked()
 
 void KGB::receiveDataFromDial(int com,int choice)
 {
-    command = com;
-    arg1 = choice;
-    arg2 = ui->powerSpinBox->value();
+    c.args[1] = com;
+    c.args[2] = choice;
+    c.args[3] = ui->powerSpinBox->value();
     ui->findMinButton->setDisabled(true);
     ui->approveButton->setEnabled(true);
 
@@ -64,7 +60,7 @@ void KGB::receiveDataFromDial(int com,int choice)
 
 void KGB::on_approveButton_clicked()
 {
-    emit sendDataToMainForm(4,command,arg1,arg2,arg3);
+    emit sendDataToMainForm(c);
     delete this;
 }
 

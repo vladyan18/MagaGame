@@ -7,13 +7,7 @@ MinFin::MinFin(bool isBlocked, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MinFin)
 {
-    command = -1;
-    arg1 = -1;
-    arg2 = -1;
-    arg3 = -1;
-    list[0] = 1;
-    list[1] = 1;
-    list[2] = 1;
+    c.args[0] = 2;
 
     ui->setupUi(this);
     updateList();
@@ -59,23 +53,23 @@ void MinFin::on_listSpheres_itemDoubleClicked()
 
 void MinFin::on_approveButton_clicked()
 {
-    sendDataToMainForm(2, command, arg1, arg2, arg3);
+    sendDataToMainForm(c);
     delete this;
 }
 
 void MinFin::on_investmentButton_clicked()
 {
-    command = 1;
+    c.args[1] = 1;
    if (list[0]) {
-       arg1 = 1;
+       c.args[2] = 1;
         if (list[1]) {
-            arg2 = 2;
+            c.args[3] = 2;
         } else {
-            arg2 = 3;
+            c.args[3] = 3;
         }
    } else {
-       arg1 = 2;
-       arg2 = 3;
+       c.args[2] = 2;
+       c.args[3] = 3;
    }
 
    ui->playButton->setDisabled(1);

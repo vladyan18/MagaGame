@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QListWidgetItem>
+#include <Command.h>
 
 namespace Ui {
 class MinFin;
@@ -17,7 +18,7 @@ public:
     explicit MinFin(bool isBlocked, QWidget *parent = 0);
     ~MinFin();
 signals:
-    void sendDataToMainForm(int, int, int, int, int);
+    void sendDataToMainForm(Command);
 
 private slots:
     void on_listSpheres_itemDoubleClicked();
@@ -28,10 +29,7 @@ private slots:
 private:
     Ui::MinFin *ui;
     void updateList();
-    int command;
-    int arg1;
-    int arg2;
-    int arg3;
+    Command c;
     int list[3];
 };
 

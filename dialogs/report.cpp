@@ -53,6 +53,35 @@ void Report::saveList(List cmds[], int listSize)
 
 }
 
+void Report::addCodes(QString codes)
+{
+    int command;
+    QTextStream stream(&codes);
+    while(!stream.atEnd())
+    {
+        stream >> command;
+        switch(command)
+        {
+        case 100:
+            ui->textBrowser->append("В нашей стране совершена диверсия!");
+            break;
+        case 300:
+            ui->textBrowser->append("<span style=\"color:red; font-size:30pt\">НА НАШЕЙ ТЕРРИТОРИИ ПРОИЗОШЕЛ ЯДЕРНЫЙ ВЗРЫВ!</span>");
+            ui->textBrowser->append("<span style=\"color:red; font-size:18pt\">Огромные потери среди населения! Повреждены важные объекты промышленности и инфраструктуры.</span>");
+            break;
+        case 310:
+            break;
+        case 320:
+            break;
+        }
+
+        if (command > 3100 && command < 3200)
+        {
+        ui->textBrowser->append("<span style=\"color:red\">Из страны №"+QString::number(command - 3100) + " по нам выпущена ядерная ракета!</span>");
+        }
+    }
+}
+
 void Report:: clearAll()
 {
     if (numOfCom)

@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QListWidgetItem>
 #include <QWidget>
+#include <Command.h>
 
 namespace Ui {
 class President;
@@ -18,7 +19,7 @@ public:
     explicit President(bool isBlocked, QWidget *parent = 0);
     ~President();
 signals:
-    void sendDataToMainForm(int, int, int, int, int);
+    void sendDataToMainForm(Command);
 
 private slots:
     void on_approveButton_clicked();
@@ -27,10 +28,7 @@ private slots:
 
 private:
     Ui::President *ui;
-    int command;
-    int arg1;
-    int arg2;
-    int arg3;
+    Command c;
 };
 
 #endif // PRESIDENT_H

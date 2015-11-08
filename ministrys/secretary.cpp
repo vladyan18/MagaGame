@@ -8,11 +8,7 @@ Secretary::Secretary(QWidget *parent) :
     ui(new Ui::Secretary)
 {
     ui->setupUi(this);
-    role = -1;
-    command = -1;
-    arg1 = -1;
-    arg2 = -1;
-    arg3 = -1;
+    c.args[0] = 10;
 
     ui->label->setPixmap(QPixmap("gerb.png").scaledToHeight(ui->label->height()));
 }
@@ -41,23 +37,23 @@ void Secretary::on_helpButton_clicked()
 
 void Secretary::on_approveButton_clicked()
 {
-    sendDataToMainForm(role,command,arg1,arg2,arg3);
+    sendDataToMainForm(c);
     delete this;
 }
 
 
 void Secretary::receiveDataFromDial(int com, int choice)
 {
-    role = choice;
-    command = com;
+    c.args[0] = choice;
+    c.args[1] = com;
     ui->approveButton->setEnabled(true);
 }
 
 void Secretary::receiveDataFromHelpDial(int helper, int receiver)
 {
-    role = helper;
-    command = -2;
-    arg1 = receiver;
+    c.args[0] = helper;
+    c.args[1] = -2;
+    c.args[2] = receiver;
     ui->approveButton->setEnabled(true);
 }
 

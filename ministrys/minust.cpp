@@ -7,7 +7,7 @@ MINUST::MINUST(bool isBlocked, QWidget *parent) :
 {
     ui->setupUi(this);
     ui->label->setPixmap(QPixmap("gerb.png").scaledToHeight(ui->label->height()));
-
+    c.args[0] = 6;
     if (isBlocked)
     {
         ui->goToCourtButton->setDisabled(true);
@@ -21,15 +21,15 @@ MINUST::~MINUST()
 
 void MINUST::on_goToCourtButton_clicked()
 {
-    command = 1;
-    arg1 = ui->numOfCountrySpinBox->value();
+    c.args[1] = 1;
+    c.args[2] = ui->numOfCountrySpinBox->value();
 
     ui->approveButton->setEnabled(true);
 }
 
 void MINUST::on_approveButton_clicked()
 {
-    emit sendDataToMainForm(6, command, arg1, arg2, arg3);
+    emit sendDataToMainForm(c);
     delete this;
 }
 

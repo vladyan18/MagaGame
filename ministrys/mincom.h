@@ -2,6 +2,7 @@
 #define MINCOM_H
 
 #include <QDialog>
+#include <Command.h>
 
 namespace Ui {
 class MinCom;
@@ -16,7 +17,7 @@ public:
     ~MinCom();
 
 signals:
-    void sendDataToMainForm(int, int, int, int, int);
+    void sendDataToMainForm(Command);
 
 private slots:
     void on_approveButton_clicked();
@@ -31,8 +32,7 @@ private slots:
 
 private:
     Ui::MinCom *ui;
-    int command;
-    int arg1,arg2,arg3;
+    Command c;
 };
 
 #endif // MINCOM_H

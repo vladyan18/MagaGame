@@ -1,7 +1,8 @@
 #ifndef MID_H
 #define MID_H
-
+#include <Command.h>
 #include <QDialog>
+using namespace std;
 
 namespace Ui {
 class MID;
@@ -16,7 +17,7 @@ public:
     ~MID();
 
 signals:
-    void sendDataToMainForm(int, int, int, int, int);
+    void sendDataToMainForm(Command);
 
 
 private slots:
@@ -36,8 +37,7 @@ private slots:
     void receiveDataFromDial(int,int);
 private:
     Ui::MID *ui;
-    int command;
-    int arg1,arg2,arg3;
+    Command c;
 };
 
 #endif // MID_H

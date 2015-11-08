@@ -52,7 +52,8 @@ HEADERS  +=   \
     dialogs/pickthemin.h \
     dialogs/report.h \
     dialogs/statistic.h \
-    tools/nettransmitter.h
+    tools/nettransmitter.h \
+    Command.h
 
 
 FORMS    += mainwindow.ui \

@@ -2,6 +2,7 @@
 #define MVD_H
 
 #include <QDialog>
+#include <Command.h>
 
 namespace Ui {
 class MVD;
@@ -15,7 +16,7 @@ public:
     explicit MVD(bool isBlocked, QWidget *parent = 0);
     ~MVD();
 signals:
-    void sendDataToMainForm(int, int, int, int, int);
+    void sendDataToMainForm(Command);
 
 public slots:
     void receiveDataFromDial(int,int);
@@ -31,8 +32,7 @@ private slots:
 
 private:
     Ui::MVD *ui;
-    int command;
-    int arg1,arg2,arg3;
+    Command c;
 };
 
 #endif // MVD_H

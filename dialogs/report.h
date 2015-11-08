@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <mainwindow.h>
+#include <QString>
 
 class List;
 
@@ -19,6 +20,7 @@ public:
     void addCommand(List*, int);
     void saveList(List[], int);
     void clearAll();
+    void addCodes(QString);
     ~Report();
 
 private slots:

@@ -2,6 +2,7 @@
 #define SECRETARY_H
 
 #include <QDialog>
+#include <Command.h>
 
 namespace Ui {
 class Secretary;
@@ -16,7 +17,7 @@ public:
     ~Secretary();
 
 signals:
-    void sendDataToMainForm(int, int, int, int, int);
+    void sendDataToMainForm(Command);
 
 private slots:
     void on_approveButton_clicked();
@@ -28,11 +29,7 @@ private slots:
 
 private:
     Ui::Secretary *ui;
-    int role;
-    int command;
-    int arg1;
-    int arg2;
-    int arg3;
+    Command c;
 };
 
 #endif // SECRETARY_H
