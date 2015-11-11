@@ -59,11 +59,13 @@ public:
     int profitSH;
     int profitMS;
     int profitTS;
-    int qOfTeams;
+    int countOfTeams = 0;
     Report* repDial;
     QString nameOfThisTeam;
     QString beautifyNumber(int);
     void readData();
+    void readVerbMatrix();
+    int checkForAgents();
 private slots:
 
 
@@ -73,7 +75,7 @@ private slots:
     void toStartConnection(QString, int);
     void onSokConnected();
     void onSokDisconnected();
-    void readFromServer();
+    void readFromServer(int code);
 
     void on_numOfTeamSpinBox_editingFinished();
     void on_nameEdit_editingFinished();
@@ -108,6 +110,7 @@ private:
     Ui::MainWindow *ui;
     List *cmds;
     int listSize;
+    bool **verbedMatrix;
 
     int kgbpower;
     QTcpSocket* _sok;

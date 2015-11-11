@@ -3,11 +3,12 @@
 
 int flag;
 
-MinFin::MinFin(bool isBlocked, QWidget *parent) :
-    QDialog(parent),
+MinFin::MinFin(MainWindow *its, bool isBlocked, QWidget *parent) :
+    IMinister(parent),
     ui(new Ui::MinFin)
 {
     c.args[0] = 2;
+    this->cash = its->cash;
 
     ui->setupUi(this);
     updateList();
@@ -16,6 +17,9 @@ MinFin::MinFin(bool isBlocked, QWidget *parent) :
     {
         ui->investmentButton->setDisabled(true);
     }
+
+    this->countOfTeams = its->countOfTeams;
+
 }
 
 void MinFin::updateList() {
@@ -73,5 +77,30 @@ void MinFin::on_investmentButton_clicked()
    }
 
    ui->playButton->setDisabled(1);
-   ui->approveButton->setEnabled(true);
+   ui->transButton->setDisabled(true);
+}
+
+void MinFin::on_playButton_clicked()
+{
+    c.args[1] = 2;
+    GetNumDialog *dial = new GetNumDialog(this, 4,1, cash);
+    dial->show();
+    this->setDisabled(true);
+
+    GetNumDialog* dial1 = new GetNumDialog(this, 5,-100, 100);
+    dial1->show();
+    this->setDisabled(true);
+
+}
+
+void MinFin::on_transButton_clicked()
+{
+    c.args[1] = 3;
+    GetNumDialog *dial = new GetNumDialog(this, 4,1, cash);
+    dial->show();
+    this->setDisabled(true);
+
+    GetNumDialog* dial1 = new GetNumDialog(this, 1,1, countOfTeams);
+    dial1->show();
+    this->setDisabled(true);
 }

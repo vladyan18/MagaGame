@@ -7,7 +7,7 @@ NetTransmitter::NetTransmitter(MainWindow *_parent)
 {
     _sok = new QTcpSocket();
     parentForm = _parent;
-    connect(this,SIGNAL(dataReceived()),parentForm,SLOT(readFromServer()));
+    connect(this,SIGNAL(dataReceived(int)),parentForm,SLOT(readFromServer(int)));
 
     connect(_sok, SIGNAL(readyRead()), this, SLOT(onSokReadyRead()));
     connect(_sok, SIGNAL(connected()), this, SLOT(onSokConnected()));
@@ -60,16 +60,32 @@ void NetTransmitter::onSokDisconnected()
 
 void NetTransmitter::onSokReadyRead()
 {
+    QFile of;
+    QTextStream stream(&of);
     QString temp;
     int mode;
     QByteArray doc;
     temp = _sok->read(1);
     mode = QString(temp).toInt();
-    doc = _sok->readAll();
-    QFile of("dataFromServer.txt");
-    QTextStream stream(&of);
-    of.open(QFile::WriteOnly);
-    stream << doc;
-    of.close();
-    emit dataReceived();
+
+
+    switch (mode)
+    {
+    case 3:
+        of.setFileName("dataFromServer.txt");
+        doc = _sok->readAll();
+        of.open(QFile::WriteOnly);
+        stream << doc;
+        of.close();
+        emit dataReceived(3);
+    break;
+    case 4:
+        of.setFileName("verbMatrix.txt");
+        doc = _sok->readAll();
+        of.open(QFile::WriteOnly);
+        stream << doc;
+        of.close();
+        emit dataReceived(4);
+        break;
+    }
 }

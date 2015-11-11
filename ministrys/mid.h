@@ -2,18 +2,22 @@
 #define MID_H
 #include <Command.h>
 #include <QDialog>
+#include <mainwindow.h>
+#include <ministrys/iminister.h>
+
 using namespace std;
 
 namespace Ui {
 class MID;
 }
 
-class MID : public QDialog
+class MID : public IMinister
 {
     Q_OBJECT
 
 public:
     explicit MID(bool isBlocked, QWidget *parent = 0);
+    explicit MID(MainWindow *its, bool isBlocked, int countOfTeams, bool **verbMatrix, QWidget *parent = 0);
     ~MID();
 
 signals:
@@ -35,9 +39,18 @@ private slots:
 
     void on_spyButton_clicked();
     void receiveDataFromDial(int,int);
+    void receivedFromMinForm(Command);
+    void on_numOfCountrySpinBox_editingFinished();
+
+    void on_numOfCountrySpinBox_valueChanged(int arg1);
+
 private:
     Ui::MID *ui;
     Command c;
+    bool orderFlag = false;
+    int countOfTeams;
+    bool **verbMatrix;
+    MainWindow *parentForm;
 };
 
 #endif // MID_H

@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>camo.gif</file>
+        <file>gerb.png</file>
+        <file>camo2.jpg</file>
+        <file>star.png</file>
+        <file>star2.png</file>
+        <file>back.png</file>
+        <file>back2.png</file>
+    </qresource>
+</RCC>

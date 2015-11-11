@@ -96,14 +96,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_presidentButton_clicked()
 {
-President *PresDial = new President(mins[0].isBlocked);
+President *PresDial = new President(this, mins[0].isBlocked);
 connect(PresDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 PresDial->show();
 }
 
 void MainWindow::on_minFinButton_clicked()
 {
-MinFin *FinDial = new MinFin(mins[1].isBlocked);
+MinFin *FinDial = new MinFin(this, mins[1].isBlocked);
 connect(FinDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 FinDial->show();
 
@@ -111,49 +111,49 @@ FinDial->show();
 
 void MainWindow::on_minDefButton_clicked()
 {
-MinDef *defDial = new MinDef(mins[2].isBlocked);
+MinDef *defDial = new MinDef(this, mins[2].isBlocked);
 connect(defDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 defDial->show();
 }
 
 void MainWindow::on_kgbButton_clicked()
 {
-KGB *KGBDial = new KGB(kgbpower, mins[3].isBlocked);
+KGB *KGBDial = new KGB(this, kgbpower, mins[3].isBlocked);
 connect(KGBDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 KGBDial->show();
 }
 
 void MainWindow::on_midButton_clicked()
 {
-MID *MIDDial = new MID(mins[4].isBlocked);
+MID *MIDDial = new MID(this, mins[4].isBlocked,countOfTeams, verbedMatrix);
 connect(MIDDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 MIDDial->show();
 }
 
 void MainWindow::on_minUstButton_clicked()
 {
-MINUST *MINUSTDial = new MINUST(mins[5].isBlocked);
+MINUST *MINUSTDial = new MINUST(this, mins[5].isBlocked);
 connect(MINUSTDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 MINUSTDial->show();
 }
 
 void MainWindow::on_mvdButton_clicked()
 {
-MVD *MVDDial = new MVD(mins[6].isBlocked);
+MVD *MVDDial = new MVD(this, mins[6].isBlocked);
 connect(MVDDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 MVDDial->show();
 }
 
 void MainWindow::on_minComButton_clicked()
 {
-MinCom *MinComDial = new MinCom(mins[7].isBlocked);
+MinCom *MinComDial = new MinCom(this, mins[7].isBlocked);
 connect(MinComDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 MinComDial->show();
 }
 
 void MainWindow::on_minHelButton_clicked()
 {
-MinHel *MinHelDial = new MinHel(mins[8].isBlocked);
+MinHel *MinHelDial = new MinHel(this, mins[8].isBlocked);
 connect(MinHelDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 MinHelDial->show();
 }
@@ -161,7 +161,7 @@ MinHelDial->show();
 
 void MainWindow::on_secretaryButton_clicked()
 {
-Secretary *SecretaryDial = new Secretary();
+Secretary *SecretaryDial = new Secretary(this);
 connect(SecretaryDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
 SecretaryDial->show();
 }
@@ -179,8 +179,6 @@ void MainWindow::on_statButton_clicked()
 
 void MainWindow::receivedFromForm(Command c)
 {
-    qDebug() << c.args[0] << " " << c.args[1] << " " <<c.args[2] << " " <<c.args[3] << " " << c.args[4]
-                           << " " << c.args[5] << " " << c.args[6];
     switch (c.args[0]) {
     case 1: //Президент
         presidentSaid(c);
@@ -530,7 +528,18 @@ void MainWindow::minFinSaid(Command c)
         cmds[*row].cost = COST_OF_INVESTMENT;
         break;
     case 2:
-        // TODO
+        cmds[*row].text = QString::number(*row+1) +": Игра на бирже, ставка: " + QString::number(c.args[3])
+                + ", цена: " + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
+        cmds[*row].cost = c.args[3];
+        break;
+    case 3:
+        cmds[*row].text = QString::number(*row+1) +": Транш суммы: " + QString::number(c.args[3])
+                + " в государство: " + QString::number(c.args[2]);
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
+        cmds[*row].cost = c.args[3];
         break;
     case -2:
         cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром финансов в делах " + namesOfMins[c.args[2] - 1];
@@ -944,7 +953,7 @@ QString MainWindow::beautifyNumber(int num)
     }
     else
     {
-        if (3*x == temp.length() - 1)
+        if (3*x >=temp.length() - 1)
         {
             x--;
         }
@@ -959,19 +968,39 @@ QString MainWindow::beautifyNumber(int num)
 
 void MainWindow::readData() // REMAKE
 {
+   repDial->clear();
    QString outputCodes;
    QFile in("dataFromServer.txt");
    in.open(QFile::ReadOnly);
+
    QString temp = in.readAll();
    in.close();
    QTextStream stream(&temp);
-   stream >> cash >> numNukes >> numPRO >> happinesOfPopulation;
+
+   stream >> cash >> numNukes >> numPRO >> happinesOfPopulation >> countOfTeams >> profitMS >> profitTS
+          >> profitSH;
+
+
+   bool **newVerbedMatrix;
+   newVerbedMatrix = new bool*[countOfTeams];
+   for (int i = 0; i < countOfTeams; i++)
+   {
+       newVerbedMatrix[i] = new bool[10];
+
+   }
+
+   verbedMatrix = newVerbedMatrix;
 
    for (int i = 0;i<10;i++)
    {
        stream >> mins[i].lvl;
    }
-   stream.read(2);
+
+   if(!stream.atEnd())
+   stream.read(1);
+   if(!stream.atEnd())
+   stream.read(1);
+
    outputCodes = stream.readLine();
    qDebug() << "OC: " << outputCodes;
 
@@ -1022,6 +1051,20 @@ void MainWindow::onSokConnected()
     ui->connectionStatusDisp->setStyleSheet("background-color:green;");
     ui->nameEdit->setReadOnly(true);
     ui->numOfTeamSpinBox->setReadOnly(true);
+
+    ui->listWidget->setDisabled(true);
+    ui->approvePlan->setDisabled(true);
+    ui->presidentButton->setDisabled(true);
+    ui->minFinButton->setDisabled(true);
+    ui->minDefButton->setDisabled(true);
+    ui->kgbButton->setDisabled(true);
+    ui->midButton->setDisabled(true);
+    ui->mvdButton->setDisabled(true);
+    ui->minUstButton->setDisabled(true);
+    ui->minComButton->setDisabled(true);
+    ui->minHelButton->setDisabled(true);
+    ui->secretaryButton->setDisabled(true);
+
 }
 
 void MainWindow::onSokDisconnected()
@@ -1031,15 +1074,36 @@ void MainWindow::onSokDisconnected()
     ui->numOfTeamSpinBox->setReadOnly(false);
 }
 
-void MainWindow::readFromServer()
+void MainWindow::readFromServer(int code)
 {
-    readData();
-    repDial->show();
-    repDial->activateWindow();
+    switch (code)
+    {
+    case 3:
+        readData();
+        repDial->show();
+        repDial->activateWindow();
 
-    ui->listWidget->setEnabled(true);
-    clearList();
-    updateList();
+        ui->listWidget->setEnabled(true);
+        ui->approvePlan->setEnabled(true);
+        ui->presidentButton->setEnabled(true);
+        ui->minFinButton->setEnabled(true);
+        ui->minDefButton->setEnabled(true);
+        ui->kgbButton->setEnabled(true);
+        ui->midButton->setEnabled(true);
+        ui->mvdButton->setEnabled(true);
+        ui->minUstButton->setEnabled(true);
+        ui->minComButton->setEnabled(true);
+        ui->minHelButton->setEnabled(true);
+        ui->secretaryButton->setEnabled(true);
+
+        clearList();
+        updateList();
+        break;
+    case 4:
+            qDebug() << "Матрица вербовки";
+        readVerbMatrix();
+        break;
+    }
 }
 
 void MainWindow::on_nameEdit_editingFinished()
@@ -1122,7 +1186,6 @@ void MainWindow::on_decListSizeButton_clicked()
 
 void MainWindow::getNumOfTeams()
 {
-    _sok->write("1");
 }
 
 void MainWindow::sendDataToServer()
@@ -1132,4 +1195,53 @@ void MainWindow::sendDataToServer()
     QByteArray doc = "3" + of.readAll();
     of.close();
     _sok->write(doc);
+}
+
+
+int MainWindow::checkForAgents()
+{
+        qDebug() << "Считаем агентов";
+    int result = 0;
+    for (int i = 0; i<countOfTeams; i++)
+    {
+        for (int j = 0 ; j <10; j++)
+        {
+            if (verbedMatrix[i][j]) { result++ ;}
+        }
+    }
+    return result;
+}
+
+void MainWindow::readVerbMatrix()
+{
+
+    QFile inf("verbMatrix.txt");
+    inf.open(QFile::ReadOnly);
+    QTextStream stream(&inf);
+    int temp;
+    qDebug() << "Начинаем читать матрицу вербовки";
+
+    bool **newVerbedMatrix;
+    newVerbedMatrix = new bool*[countOfTeams];
+    for (int i = 0; i < countOfTeams; i++)
+    {
+        newVerbedMatrix[i] = new bool[10];
+
+    }
+
+    verbedMatrix = newVerbedMatrix;
+
+    qDebug() << "Начинаем заполнение";
+    for (int i = 0; i < countOfTeams; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+                    qDebug() << "Заносим значение" << QString::number(j);
+            stream >> temp;
+            if (temp) verbedMatrix[i][j] = 1;
+            else   verbedMatrix[i][j] = 0;
+        }
+    }
+        qDebug() << "Закончили читать матрицу вербовки";
+    inf.close();
 }

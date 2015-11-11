@@ -3,17 +3,19 @@
 
 #include <QDialog>
 #include <Command.h>
+#include <mainwindow.h>
+#include <ministrys/iminister.h>
 
 namespace Ui {
 class KGB;
 }
 
-class KGB : public QDialog
+class KGB : public IMinister
 {
     Q_OBJECT
 
 public:
-    explicit KGB(int,bool isBlocked, QWidget *parent = 0);
+    explicit KGB(MainWindow *its, int,bool isBlocked, QWidget *parent = 0);
     ~KGB();
 signals:
     void sendDataToMainForm(Command);
@@ -30,7 +32,7 @@ private slots:
     void receiveDataFromDial(int,int);
 private:
     Ui::KGB *ui;
-    Command c;
+    int countOfTeams;
 };
 
 #endif // KGB_H

@@ -20,6 +20,7 @@ public:
     void addCommand(List*, int);
     void saveList(List[], int);
     void clearAll();
+    void clear();
     void addCodes(QString);
     ~Report();
 
@@ -31,6 +32,7 @@ private:
     List *savedList;
     int savedListSize;
     int numOfCom = 0;
+    QString beautifyNumber(int num);
 };
 
 #endif // REPORT_H

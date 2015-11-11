@@ -2,8 +2,8 @@
 #include "ui_kgb.h"
 #include <dialogs/pickthemin.h>
 
-KGB::KGB(int power,bool isBlocked, QWidget *parent) :
-    QDialog(parent),
+KGB::KGB(MainWindow *its, int power,bool isBlocked, QWidget *parent) :
+    IMinister(parent),
     ui(new Ui::KGB)
 {
     ui->setupUi(this);
@@ -23,6 +23,9 @@ KGB::KGB(int power,bool isBlocked, QWidget *parent) :
 
     c.args[0] = 4;
 
+    this->countOfTeams = its->countOfTeams;
+    if (this->countOfTeams != 0)
+    ui->numOfCountrySpinBox->setMaximum(this->countOfTeams);
 }
 
 KGB::~KGB()

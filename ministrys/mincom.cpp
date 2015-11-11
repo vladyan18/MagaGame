@@ -1,8 +1,8 @@
 #include "mincom.h"
 #include "ui_mincom.h"
 
-MinCom::MinCom(bool isBlocked, QWidget *parent) :
-    QDialog(parent),
+MinCom::MinCom(MainWindow *its, bool isBlocked, QWidget *parent) :
+    IMinister(parent),
     ui(new Ui::MinCom)
 {
    ui->setupUi(this);
@@ -17,6 +17,10 @@ MinCom::MinCom(bool isBlocked, QWidget *parent) :
         ui->refLiesButton->setDisabled(true);
         ui->sayToMediaButton->setDisabled(true);
     }
+
+    this->countOfTeams = its->countOfTeams;
+    if (this->countOfTeams != 0)
+    ui->numOfCountrySpinBox->setMaximum(this->countOfTeams);
 }
 
 MinCom::~MinCom()

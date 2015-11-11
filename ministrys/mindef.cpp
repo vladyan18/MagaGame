@@ -1,18 +1,30 @@
 #include "mindef.h"
 #include "ui_mindef.h"
 
-MinDef::MinDef(bool isBlocked, QWidget *parent) :
-    QDialog(parent),
+MinDef::MinDef(MainWindow *its, bool isBlocked, QWidget *parent) :
+    IMinister(parent),
     ui(new Ui::MinDef)
 {
     ui->setupUi(this);
     c.args[0] = 3;
-    ui->label_2->setPixmap(QPixmap("star.png").scaledToHeight(ui->label_2->height()));
 
     if (isBlocked)
     {
 
     }
+
+    this->countOfTeams = its->countOfTeams;
+    this->countOfNukes = its->numNukes;
+    this->countOfPRO = its->numPRO;
+
+    if (countOfTeams < 1)
+    {
+        ui->pushButton_5->setDisabled(true);
+        ui->pushButton_6->setDisabled(true);
+        ui->pushButton_7->setDisabled(true);
+        ui->pushButton_8->setDisabled(true);
+    }
+
 }
 
 MinDef::~MinDef()
@@ -32,7 +44,9 @@ void MinDef::on_pushButton_clicked()
 void MinDef::on_pushButton_2_clicked()
 {
     c.args[1] = 1;
-    c.args[2] = ui->spinBox->value();
+    dial = new GetNumDialog(this,2,-countOfNukes,1000);
+    dial->show();
+    this->setDisabled(true);
 
     ui->pushButton_3->setDisabled(1);
     ui->pushButton_4->setDisabled(1);
@@ -41,17 +55,15 @@ void MinDef::on_pushButton_2_clicked()
     ui->pushButton_7->setDisabled(1);
     ui->pushButton_8->setDisabled(1);
 
-    ui->spinBox_2->setDisabled(1);
-    ui->spinBox_3->setDisabled(1);
-    ui->spinBox_4->setDisabled(1);
-    ui->spinBox_5->setDisabled(1);
-    ui->spinBox_6->setDisabled(1);
+
 }
 
 void MinDef::on_pushButton_3_clicked()
 {
     c.args[1] = 2;
-    c.args[2] = ui->spinBox_2->value();
+    dial = new GetNumDialog(this,2,-countOfPRO,1000);
+    dial->show();
+    this->setDisabled(true);
 
     ui->pushButton_2->setDisabled(1);
     ui->pushButton_4->setDisabled(1);
@@ -60,11 +72,7 @@ void MinDef::on_pushButton_3_clicked()
     ui->pushButton_7->setDisabled(1);
     ui->pushButton_8->setDisabled(1);
 
-    ui->spinBox->setDisabled(1);
-    ui->spinBox_3->setDisabled(1);
-    ui->spinBox_4->setDisabled(1);
-    ui->spinBox_5->setDisabled(1);
-    ui->spinBox_6->setDisabled(1);
+
 }
 
 
@@ -72,9 +80,14 @@ void MinDef::on_pushButton_3_clicked()
 void MinDef::on_pushButton_7_clicked()
 {
     c.args[1] = 3;
-    c.args[2] = ui->spinBox_3->value();
-    c.args[3] = ui->spinBox_4->value();
-    c.args[4] = ui->spinBox_5->value();
+
+    dial = new GetNumDialog(this,1,1,countOfTeams);
+    dial->show();
+    this->setDisabled(true);
+
+    dial = new GetNumDialog(this,3,1,countOfNukes);
+    dial->show();
+    this->setDisabled(true);
 
     ui->pushButton_2->setDisabled(1);
     ui->pushButton_3->setDisabled(1);
@@ -83,16 +96,16 @@ void MinDef::on_pushButton_7_clicked()
     ui->pushButton_6->setDisabled(1);
     ui->pushButton_8->setDisabled(1);
 
-    ui->spinBox_2->setDisabled(1);
-    ui->spinBox->setDisabled(1);
-    ui->spinBox_6->setDisabled(1);
+
 
 }
 
 void MinDef::on_pushButton_4_clicked()
 {
     c.args[1] = 4;
-    c.args[2] = ui->spinBox_6->value();
+    dial = new GetNumDialog(this,2,1,countOfPRO);
+    dial->show();
+    this->setDisabled(true);
 
     ui->pushButton_2->setDisabled(1);
     ui->pushButton_3->setDisabled(1);
@@ -101,17 +114,15 @@ void MinDef::on_pushButton_4_clicked()
     ui->pushButton_7->setDisabled(1);
     ui->pushButton_8->setDisabled(1);
 
-    ui->spinBox_2->setDisabled(1);
-    ui->spinBox_3->setDisabled(1);
-    ui->spinBox_4->setDisabled(1);
-    ui->spinBox_5->setDisabled(1);
-    ui->spinBox->setDisabled(1);
 }
 
 void MinDef::on_pushButton_8_clicked()
 {
     c.args[1] = 5;
-    c.args[2] = ui->spinBox_3->value();
+    dial = new GetNumDialog(this,1,1,countOfTeams);
+    dial->show();
+    this->setDisabled(true);
+
 
     ui->pushButton_2->setDisabled(1);
     ui->pushButton_3->setDisabled(1);
@@ -120,17 +131,15 @@ void MinDef::on_pushButton_8_clicked()
     ui->pushButton_6->setDisabled(1);
     ui->pushButton_7->setDisabled(1);
 
-    ui->spinBox_2->setDisabled(1);
-    ui->spinBox->setDisabled(1);
-    ui->spinBox_4->setDisabled(1);
-    ui->spinBox_5->setDisabled(1);
-    ui->spinBox_6->setDisabled(1);
+
 }
 
 void MinDef::on_pushButton_6_clicked()
 {
     c.args[1] = 6;
-    c.args[2] = ui->spinBox_3->value();
+    dial = new GetNumDialog(this,1,1,countOfTeams);
+    dial->show();
+    this->setDisabled(true);
 
     ui->pushButton_2->setDisabled(1);
     ui->pushButton_3->setDisabled(1);
@@ -139,17 +148,14 @@ void MinDef::on_pushButton_6_clicked()
     ui->pushButton_7->setDisabled(1);
     ui->pushButton_8->setDisabled(1);
 
-    ui->spinBox_2->setDisabled(1);
-    ui->spinBox->setDisabled(1);
-    ui->spinBox_4->setDisabled(1);
-    ui->spinBox_5->setDisabled(1);
-    ui->spinBox_6->setDisabled(1);
 }
 
 void MinDef::on_pushButton_5_clicked()
 {
     c.args[1] = 7;
-    c.args[2] = ui->spinBox_3->value();
+    dial = new GetNumDialog(this,1,1,countOfTeams);
+    dial->show();
+    this->setDisabled(true);
 
     ui->pushButton_2->setDisabled(1);
     ui->pushButton_3->setDisabled(1);
@@ -158,11 +164,6 @@ void MinDef::on_pushButton_5_clicked()
     ui->pushButton_7->setDisabled(1);
     ui->pushButton_8->setDisabled(1);
 
-    ui->spinBox_2->setDisabled(1);
-    ui->spinBox->setDisabled(1);
-    ui->spinBox_4->setDisabled(1);
-    ui->spinBox_5->setDisabled(1);
-    ui->spinBox_6->setDisabled(1);
 }
 
 

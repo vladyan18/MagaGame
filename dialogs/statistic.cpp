@@ -24,7 +24,7 @@ Statistic::Statistic(MainWindow *prnt, QWidget *parent) :
     ui->ecStat->append("Доход от текстильной промышленности: <span style=\" color:green;\">" + prnt->beautifyNumber(prnt->profitTS) + "</span>");
     ui->ecStat->append("Расход на содержание ядерных ракет: <span style=\" color:red;\">" + prnt->beautifyNumber(prnt->numNukes*50000) + "</span>");
     ui->ecStat->append("Расход на содержание ПРО: <span style=\" color:red;\">" + prnt->beautifyNumber(prnt->numPRO*50000) + "</span>");
-    ui->ecStat->append("Расход на содержание иностранных агентов: <span style=\" color:red;\">" + prnt->beautifyNumber(0) + "</span>");
+    ui->ecStat->append("Расход на содержание иностранных агентов: <span style=\" color:red;\">" + prnt->beautifyNumber(prnt->checkForAgents()*50000) + "</span>");
 
     ui->milStat->append("<span style=\" color:red;\">Ядерный арсенал: " + QString::number(prnt->numNukes) + "</span>");
     ui->milStat->append("<span style=\" color:blue;\">Арсенал ПРО: " + QString::number(prnt->numPRO) + "</span>");

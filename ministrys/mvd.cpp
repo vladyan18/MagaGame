@@ -4,8 +4,8 @@
 
 #define NUMBER_OF_MINISTRY 7
 
-MVD::MVD(bool isBlocked, QWidget *parent) :
-    QDialog(parent),
+MVD::MVD(MainWindow *its, bool isBlocked, QWidget *parent) :
+    IMinister(parent),
     ui(new Ui::MVD)
 {
     ui->setupUi(this);
@@ -16,6 +16,9 @@ MVD::MVD(bool isBlocked, QWidget *parent) :
     {
         ui->arestMin->setDisabled(true);
     }
+
+    this->countOfTeams = its->countOfTeams;
+
 }
 
 MVD::~MVD()

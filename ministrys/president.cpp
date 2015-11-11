@@ -2,12 +2,13 @@
 #include "ui_president.h"
 #include <dialogs/pickthemin.h>
 
-President::President(bool isBlocked, QWidget *parent) :
-    QDialog(parent),
+President::President(MainWindow *its, bool isBlocked, QWidget *parent) :
+    IMinister(parent),
     ui(new Ui::President)
 {
     ui->setupUi(this);
     c.args[0] = 1;
+    this->countOfTeams = its->countOfTeams;
 
 }
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>594</width>
-    <height>590</height>
+    <width>519</width>
+    <height>477</height>
    </rect>
   </property>
   <property name="palette">
@@ -428,17 +428,31 @@
   <property name="windowTitle">
    <string>Министерство Обороны</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog
+{
+background-image: url(:/camo2.jpg);
+background-repeat: no-repeat;
+}</string>
+  </property>
   <widget class="QPushButton" name="pushButton">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>530</y>
-     <width>261</width>
-     <height>51</height>
+     <x>100</x>
+     <y>390</y>
+     <width>321</width>
+     <height>71</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 169, 112);
+font: 75 22pt &quot;Ubuntu&quot;;</string>
    </property>
    <property name="text">
     <string>Подтвердить</string>
@@ -450,14 +464,17 @@
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>70</y>
-     <width>221</width>
-     <height>27</height>
+     <x>10</x>
+     <y>20</y>
+     <width>231</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(223, 225, 186);</string>
    </property>
    <property name="text">
     <string>Изменить ядерный арсенал</string>
@@ -472,11 +489,14 @@
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>110</y>
-     <width>221</width>
-     <height>27</height>
+     <x>10</x>
+     <y>80</y>
+     <width>231</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(223, 225, 186);</string>
    </property>
    <property name="text">
     <string>Изменить арсенал ПРО</string>
@@ -485,40 +505,17 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>70</y>
-     <width>71</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="minimum">
-    <number>-99</number>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBox_2">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>110</y>
-     <width>71</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="minimum">
-    <number>-99</number>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>150</y>
-     <width>221</width>
-     <height>27</height>
+     <x>10</x>
+     <y>140</y>
+     <width>231</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(223, 225, 186);</string>
    </property>
    <property name="text">
     <string>Сбить ядерную ракету</string>
@@ -531,10 +528,13 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>270</y>
+     <y>200</y>
      <width>231</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(223, 225, 186);</string>
    </property>
    <property name="text">
     <string>Совершить набег</string>
@@ -543,40 +543,17 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>240</y>
-     <width>91</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>на гос-во №</string>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBox_3">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>230</y>
-     <width>48</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="minimum">
-    <number>1</number>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton_6">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>330</y>
+     <y>260</y>
      <width>231</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(223, 225, 186);</string>
    </property>
    <property name="text">
     <string>Напасть сухопутными силами</string>
@@ -591,10 +568,10 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>390</y>
+     <x>280</x>
+     <y>260</y>
      <width>231</width>
-     <height>81</height>
+     <height>111</height>
     </rect>
    </property>
    <property name="font">
@@ -603,6 +580,14 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color : #e12626;
+color:white;
+</string>
    </property>
    <property name="locale">
     <locale language="Russian" country="Russia"/>
@@ -613,18 +598,27 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="default">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
   </widget>
   <widget class="QPushButton" name="pushButton_8">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>480</y>
+     <y>320</y>
      <width>231</width>
-     <height>31</height>
+     <height>51</height>
     </rect>
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(223, 225, 186);</string>
    </property>
    <property name="text">
     <string>Отмена ядерного удара</string>
@@ -639,86 +633,21 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_4">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>390</y>
-     <width>48</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>400</y>
-     <width>131</width>
-     <height>17</height>
+     <x>290</x>
+     <y>30</y>
+     <width>201</width>
+     <height>201</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/star.png);
+background-repeat: no-repeat;</string>
    </property>
    <property name="text">
-    <string>Максимум ракет</string>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBox_5">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>440</y>
-     <width>48</width>
-     <height>27</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>280</x>
-     <y>440</y>
-     <width>91</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Попаданий</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>150</y>
-     <width>151</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>число противоракет: </string>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBox_6">
-   <property name="geometry">
-    <rect>
-     <x>430</x>
-     <y>150</y>
-     <width>48</width>
-     <height>27</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>240</y>
-     <width>151</width>
-     <height>111</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
  </widget>

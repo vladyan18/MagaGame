@@ -3,18 +3,23 @@
 
 #include <QDialog>
 #include <Command.h>
+#include <mainwindow.h>
+#include <getnumdialog.h>
+#include <ministrys/iminister.h>
 
+
+class GetNumDialog;
 
 namespace Ui {
 class MinDef;
 }
 
-class MinDef : public QDialog
+class MinDef : public IMinister
 {
     Q_OBJECT
 
 public:
-    explicit MinDef(bool isBlocked, QWidget *parent = 0);
+    explicit MinDef(MainWindow *its, bool isBlocked, QWidget *parent = 0);
     ~MinDef();
 signals:
     void sendDataToMainForm(Command);
@@ -36,9 +41,14 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+
 private:
     Ui::MinDef *ui;
-    Command c;
+    int countOfPRO;
+    int countOfNukes;
+    GetNumDialog *dial;
+
+    int countOfTeams;
 };
 
 #endif // MINDEF_H

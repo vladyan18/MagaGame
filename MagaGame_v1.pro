@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     dialogs/pickthemin.cpp \
     dialogs/report.cpp \
     dialogs/statistic.cpp \
-    tools/nettransmitter.cpp
+    tools/nettransmitter.cpp \
+    getnumdialog.cpp
 
 HEADERS  +=   \
     mainwindow.h \
@@ -53,7 +54,9 @@ HEADERS  +=   \
     dialogs/report.h \
     dialogs/statistic.h \
     tools/nettransmitter.h \
-    Command.h
+    Command.h \
+    getnumdialog.h \
+    ministrys/iminister.h
 
 
 FORMS    += mainwindow.ui \
@@ -72,7 +75,11 @@ FORMS    += mainwindow.ui \
     dialogs/helpdialog.ui \
     dialogs/pickthemin.ui \
     dialogs/report.ui \
-    dialogs/statistic.ui
+    dialogs/statistic.ui \
+    getnumdialog.ui
+
+RESOURCES += \
+    resources.qrc
 
 
 

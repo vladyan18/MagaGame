@@ -77,7 +77,13 @@
   <property name="windowTitle">
    <string>MagaGame v1.1</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>

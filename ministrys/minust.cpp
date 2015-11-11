@@ -1,8 +1,8 @@
 #include "minust.h"
 #include "ui_minust.h"
 
-MINUST::MINUST(bool isBlocked, QWidget *parent) :
-    QDialog(parent),
+MINUST::MINUST(MainWindow *its, bool isBlocked, QWidget *parent) :
+    IMinister(parent),
     ui(new Ui::MINUST)
 {
     ui->setupUi(this);
@@ -12,6 +12,10 @@ MINUST::MINUST(bool isBlocked, QWidget *parent) :
     {
         ui->goToCourtButton->setDisabled(true);
     }
+
+    this->countOfTeams = its->countOfTeams;
+    if (this->countOfTeams != 0)
+    ui->numOfCountrySpinBox->setMaximum(this->countOfTeams);
 }
 
 MINUST::~MINUST()

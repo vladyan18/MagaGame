@@ -3,17 +3,19 @@
 
 #include <QDialog>
 #include <Command.h>
+#include <mainwindow.h>
+#include <ministrys/iminister.h>
 
 namespace Ui {
 class MINUST;
 }
 
-class MINUST : public QDialog
+class MINUST : public IMinister
 {
     Q_OBJECT
 
 public:
-    explicit MINUST(bool isBlocked, QWidget *parent = 0);
+    explicit MINUST(MainWindow *its, bool isBlocked, QWidget *parent = 0);
     ~MINUST();
 
 signals:
@@ -27,6 +29,7 @@ private slots:
 private:
     Ui::MINUST *ui;
     Command c;
+    int countOfTeams;
 };
 
 #endif // MINUST_H

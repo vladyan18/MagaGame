@@ -1,8 +1,8 @@
 #include "minhel.h"
 #include "ui_minhel.h"
 
-MinHel::MinHel(bool isBlocked, QWidget *parent) :
-    QDialog(parent),
+MinHel::MinHel(MainWindow *its, bool isBlocked, QWidget *parent) :
+    IMinister(parent),
     ui(new Ui::MinHel)
 {
     ui->setupUi(this);
@@ -14,6 +14,13 @@ MinHel::MinHel(bool isBlocked, QWidget *parent) :
     {
         ui->infectButton->setDisabled(true);
         ui->vaccineButton->setDisabled(true);
+    }
+
+    this->countOfTeams = its->countOfTeams;
+    if (this->countOfTeams != 0)
+    {
+    ui->infectSpinBox->setMaximum(this->countOfTeams);
+    ui->VirusSpinBox->setMaximum(this->countOfTeams);
     }
 }
 

@@ -3,17 +3,19 @@
 
 #include <QDialog>
 #include <Command.h>
+#include <mainwindow.h>
+#include <ministrys/iminister.h>
 
 namespace Ui {
 class MinHel;
 }
 
-class MinHel : public QDialog
+class MinHel : public IMinister
 {
     Q_OBJECT
 
 public:
-    explicit MinHel(bool isBlocked, QWidget *parent = 0);
+    explicit MinHel(MainWindow *its, bool isBlocked, QWidget *parent = 0);
     ~MinHel();
 
 signals:
@@ -29,6 +31,7 @@ private slots:
 private:
     Ui::MinHel *ui;
     Command c;
+    int countOfTeams;
 };
 
 #endif // MINHEL_H

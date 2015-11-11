@@ -3,17 +3,19 @@
 
 #include <QDialog>
 #include <Command.h>
+#include <mainwindow.h>
+#include <ministrys/iminister.h>
 
 namespace Ui {
 class Secretary;
 }
 
-class Secretary : public QDialog
+class Secretary : public IMinister
 {
     Q_OBJECT
 
 public:
-    explicit Secretary(QWidget *parent = 0);
+    explicit Secretary(MainWindow *its, QWidget *parent = 0);
     ~Secretary();
 
 signals:
@@ -30,6 +32,7 @@ private slots:
 private:
     Ui::Secretary *ui;
     Command c;
+    int countOfTeams;
 };
 
 #endif // SECRETARY_H

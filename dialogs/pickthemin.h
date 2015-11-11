@@ -2,6 +2,8 @@
 #define PICKTHEMIN_H
 
 #include <QDialog>
+#include <vector>
+using namespace std;
 
 namespace Ui {
 class PickTheMin;
@@ -13,6 +15,7 @@ class PickTheMin : public QDialog
 
 public:
     explicit PickTheMin(int, int, QWidget *parent = 0);
+    explicit PickTheMin(int com, int country,bool **verbMatrix, QWidget *parent = 0);
     ~PickTheMin();
 signals:
     void sendDataToParent(int, int except = 0);
@@ -25,6 +28,8 @@ private:
     Ui::PickTheMin *ui;
     int withoutMin;
     int command;
+    vector<int> ministers;
+
 };
 
 #endif // PICKTHEMIN_H

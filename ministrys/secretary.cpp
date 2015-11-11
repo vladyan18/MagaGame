@@ -3,14 +3,15 @@
 #include <dialogs/pickthemin.h>
 #include <dialogs/helpdialog.h>
 
-Secretary::Secretary(QWidget *parent) :
-    QDialog(parent),
+Secretary::Secretary(MainWindow *its, QWidget *parent) :
+    IMinister(parent),
     ui(new Ui::Secretary)
 {
     ui->setupUi(this);
     c.args[0] = 10;
 
     ui->label->setPixmap(QPixmap("gerb.png").scaledToHeight(ui->label->height()));
+    this->countOfTeams = its->countOfTeams;
 }
 
 Secretary::~Secretary()

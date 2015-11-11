@@ -13,7 +13,7 @@ public:
     void connectToHost(QString, int);
     bool sendDataToServer();
 signals:
-    void dataReceived();
+    void dataReceived(int code);
 private:
     QTcpSocket* _sok;
     MainWindow* parentForm;

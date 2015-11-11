@@ -3,17 +3,19 @@
 
 #include <QDialog>
 #include <Command.h>
+#include <mainwindow.h>
+#include <ministrys/iminister.h>
 
 namespace Ui {
 class MVD;
 }
 
-class MVD : public QDialog
+class MVD : public IMinister
 {
     Q_OBJECT
 
 public:
-    explicit MVD(bool isBlocked, QWidget *parent = 0);
+    explicit MVD(MainWindow *its, bool isBlocked, QWidget *parent = 0);
     ~MVD();
 signals:
     void sendDataToMainForm(Command);
@@ -33,6 +35,7 @@ private slots:
 private:
     Ui::MVD *ui;
     Command c;
+    int countOfTeams;
 };
 
 #endif // MVD_H

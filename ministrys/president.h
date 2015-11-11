@@ -6,17 +6,19 @@
 #include <QListWidgetItem>
 #include <QWidget>
 #include <Command.h>
+#include <mainwindow.h>
+#include <ministrys/iminister.h>
 
 namespace Ui {
 class President;
 }
 
-class President : public QDialog
+class President : public IMinister
 {
     Q_OBJECT
 
 public:
-    explicit President(bool isBlocked, QWidget *parent = 0);
+    explicit President(MainWindow *its, bool isBlocked, QWidget *parent = 0);
     ~President();
 signals:
     void sendDataToMainForm(Command);
@@ -29,6 +31,7 @@ private slots:
 private:
     Ui::President *ui;
     Command c;
+    int countOfTeams;
 };
 
 #endif // PRESIDENT_H

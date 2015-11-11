@@ -4,18 +4,26 @@
 #include <QDialog>
 #include <QListWidgetItem>
 #include <Command.h>
+#include <mainwindow.h>
+#include <getnumdialog.h>
+#include <ministrys/iminister.h>
+
+
+class GetNumDialog;
+
+
 
 namespace Ui {
 class MinFin;
 }
 
 
-class MinFin : public QDialog
+class MinFin : public IMinister
 {
     Q_OBJECT
 
 public:
-    explicit MinFin(bool isBlocked, QWidget *parent = 0);
+    explicit MinFin(MainWindow *its, bool isBlocked, QWidget *parent = 0);
     ~MinFin();
 signals:
     void sendDataToMainForm(Command);
@@ -26,11 +34,17 @@ private slots:
     void on_approveButton_clicked();
     void on_investmentButton_clicked();
 
+    void on_playButton_clicked();
+
+    void on_transButton_clicked();
+
 private:
     Ui::MinFin *ui;
     void updateList();
-    Command c;
-    int list[3];
+    int cash;
+
+    int list[3] = {1,1,1};
+    int countOfTeams;
 };
 
 #endif // MINFIN_H
