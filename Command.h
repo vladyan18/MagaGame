@@ -1,9 +1,15 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-struct Command
+class Command
 {
-    int args[7] = {-1,-1,-1,-1,-1,-1,-1};
+public:
+    int args[7];
+    Command()
+    {
+        for (int i = 0; i<7; i++)
+        args[i] = -1;
+    }
 };
 
 

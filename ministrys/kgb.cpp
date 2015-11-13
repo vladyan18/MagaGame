@@ -7,7 +7,6 @@ KGB::KGB(MainWindow *its, int power,bool isBlocked, QWidget *parent) :
     ui(new Ui::KGB)
 {
     ui->setupUi(this);
-    ui->label->setPixmap(QPixmap("kgb.png"));
 
     ui->powerSpinBox->setMaximum(power);
     if (power == 0 )

@@ -6,7 +6,6 @@ MINUST::MINUST(MainWindow *its, bool isBlocked, QWidget *parent) :
     ui(new Ui::MINUST)
 {
     ui->setupUi(this);
-    ui->label->setPixmap(QPixmap("gerb.png").scaledToHeight(ui->label->height()));
     c.args[0] = 6;
     if (isBlocked)
     {

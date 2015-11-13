@@ -9,8 +9,6 @@ Secretary::Secretary(MainWindow *its, QWidget *parent) :
 {
     ui->setupUi(this);
     c.args[0] = 10;
-
-    ui->label->setPixmap(QPixmap("gerb.png").scaledToHeight(ui->label->height()));
     this->countOfTeams = its->countOfTeams;
 }
 

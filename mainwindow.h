@@ -67,7 +67,7 @@ public:
     void readVerbMatrix();
     int checkForAgents();
 private slots:
-
+    void loose();
 
     void receivedFromForm(Command);
     void on_listWidget_itemDoubleClicked();

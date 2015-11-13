@@ -7,7 +7,6 @@ MinHel::MinHel(MainWindow *its, bool isBlocked, QWidget *parent) :
 {
     ui->setupUi(this);
     c.args[0] = 9;
-    ui->label_2->setPixmap(QPixmap("med.png"));
     ui->label_3->setToolTip("Больной вне опасности.");
 
     if (isBlocked)

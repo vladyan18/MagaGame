@@ -29,9 +29,6 @@ MID::MID(bool isBlocked, QWidget *parent) :
 
     ui->setupUi(this);
 
-
-    ui->gerb->setPixmap(QPixmap("gerb.png"));
-
     if (isBlocked)
     {
         ui->diversionButton->setDisabled(true);
@@ -84,7 +81,6 @@ MID::MID(MainWindow *its, bool isBlocked, int countOfTeams, bool **verbMatrix, Q
     ui->numOfCountrySpinBox->setMaximum(countOfTeams);
 
 
-    ui->gerb->setPixmap(QPixmap("gerb.png"));
 
     if (countOfAgents == 0)
     {

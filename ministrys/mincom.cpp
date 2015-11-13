@@ -7,7 +7,6 @@ MinCom::MinCom(MainWindow *its, bool isBlocked, QWidget *parent) :
 {
    ui->setupUi(this);
     c.args[0] = 8;
-    ui->label_2->setPixmap(QPixmap("gerb.png").scaledToHeight(ui->label_2->height()));
     ui->label_3->setToolTip("Незнание - сила. \n Свобода - это рабство. \n Война - это мир.");
     ui->label_3->setToolTipDuration(10000);
 

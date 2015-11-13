@@ -24,6 +24,8 @@ public:
     void addCodes(QString);
     ~Report();
 
+signals:
+    void loose();
 private slots:
     void on_approveButton_clicked();
 

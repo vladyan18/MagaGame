@@ -110,13 +110,21 @@ void Report::addCodes(QString codes)
             break;
         case 320:
             break;
+        case 500:
+            stream >> arg1;
+            ui->textBrowser->append("<span style=\"color:red; font-weight:600; font-size:30pt\">Наша страна захвачена!</span>");
+            ui->textBrowser->append("<span style=\"color:red; font-weight:600; font-size:13pt\">Войска государства №" + QString::number(arg1) + " уже входят в здание правительства!</span>");
+            emit loose();
+            break;
+        case 3000:
+            stream >> arg1;
+            ui->textBrowser->append("<span style=\"color:red; font-weight:600; font-size:13pt\">Обнаружен пуск ядерной ракеты в стране №" + QString::number(arg1) + "!</span>");
+            break;
+        case 3001:
+            stream >> arg1;
+            ui->textBrowser->append("<span style=\"color:green; font-weight:600; font-size:13pt\">Наша система ПРО сбила " + QString::number(arg1) + " ракет!</span>");
+            break;
         }
-
-        if (command > 3100 && command < 3200)
-        {
-        ui->textBrowser->append("<span style=\"color:red\">Из страны №"+QString::number(command - 3100) + " по нам выпущена ядерная ракета!</span>");
-        }
-
     }
 
     QScrollBar *t = ui->textBrowser->verticalScrollBar();

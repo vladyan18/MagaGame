@@ -43,7 +43,7 @@ private:
     void updateList();
     int cash;
 
-    int list[3] = {1,1,1};
+    int list[3];
     int countOfTeams;
 };
 

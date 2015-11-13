@@ -90,14 +90,14 @@
     <enum>QFrame::NoFrame</enum>
    </property>
    <property name="text">
-    <string>герб</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/gerb.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>140</y>
+     <x>60</x>
+     <y>130</y>
      <width>211</width>
      <height>31</height>
     </rect>
@@ -116,8 +116,8 @@
   <widget class="QSpinBox" name="numOfCountrySpinBox">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>140</y>
+     <x>270</x>
+     <y>130</y>
      <width>48</width>
      <height>27</height>
     </rect>
@@ -129,8 +129,8 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>140</y>
+     <x>330</x>
+     <y>130</y>
      <width>211</width>
      <height>31</height>
     </rect>
@@ -149,7 +149,7 @@
   <widget class="QPushButton" name="goToCourtButton">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>150</x>
      <y>180</y>
      <width>261</width>
      <height>71</height>

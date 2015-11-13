@@ -66,6 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
     listSize = 20;
     cmds = new List[listSize];
     repDial = new Report();
+    connect (repDial, SIGNAL(loose()), this, SLOT(loose()));
 
     kgbpower = 100;
     profitSH = 1000000;
@@ -926,7 +927,7 @@ void MainWindow::on_approvePlan_clicked()
   of.close();
 
   repDial->saveList(cmds,listSize);
-  ui->listWidget->setDisabled(true);
+
   updateList();
 
   if ( transmitter->sendDataToServer() )
@@ -935,7 +936,6 @@ void MainWindow::on_approvePlan_clicked()
   appr = new Approved();
   appr->show();
   }
-
 }
 
 QString MainWindow::beautifyNumber(int num)
@@ -968,7 +968,7 @@ QString MainWindow::beautifyNumber(int num)
 
 void MainWindow::readData() // REMAKE
 {
-   repDial->clear();
+ //  repDial->clear();
    QString outputCodes;
    QFile in("dataFromServer.txt");
    in.open(QFile::ReadOnly);
@@ -1038,33 +1038,14 @@ void MainWindow::on_connectionStatusDisp_clicked()
 void MainWindow::toStartConnection(QString host, int port)
 {
     numTeam = ui->numOfTeamSpinBox->value();
+    nameOfThisTeam = ui->nameEdit->text();
    transmitter->connectToHost(host, port);
 }
 
 void MainWindow::onSokConnected()
-{
-
-     char *t = new char[nameOfThisTeam.length() + 1];
-     QByteArray ar= QString(QString::number(numTeam) + nameOfThisTeam).toUtf8();
-     t = ar.data();
-    _sok->write(t);
+{    
     ui->connectionStatusDisp->setStyleSheet("background-color:green;");
-    ui->nameEdit->setReadOnly(true);
-    ui->numOfTeamSpinBox->setReadOnly(true);
-
-    ui->listWidget->setDisabled(true);
-    ui->approvePlan->setDisabled(true);
-    ui->presidentButton->setDisabled(true);
-    ui->minFinButton->setDisabled(true);
-    ui->minDefButton->setDisabled(true);
-    ui->kgbButton->setDisabled(true);
-    ui->midButton->setDisabled(true);
-    ui->mvdButton->setDisabled(true);
-    ui->minUstButton->setDisabled(true);
-    ui->minComButton->setDisabled(true);
-    ui->minHelButton->setDisabled(true);
-    ui->secretaryButton->setDisabled(true);
-
+    this->setDisabled(true);
 }
 
 void MainWindow::onSokDisconnected()
@@ -1076,25 +1057,13 @@ void MainWindow::onSokDisconnected()
 
 void MainWindow::readFromServer(int code)
 {
+    this->setEnabled(true);
     switch (code)
     {
     case 3:
         readData();
         repDial->show();
         repDial->activateWindow();
-
-        ui->listWidget->setEnabled(true);
-        ui->approvePlan->setEnabled(true);
-        ui->presidentButton->setEnabled(true);
-        ui->minFinButton->setEnabled(true);
-        ui->minDefButton->setEnabled(true);
-        ui->kgbButton->setEnabled(true);
-        ui->midButton->setEnabled(true);
-        ui->mvdButton->setEnabled(true);
-        ui->minUstButton->setEnabled(true);
-        ui->minComButton->setEnabled(true);
-        ui->minHelButton->setEnabled(true);
-        ui->secretaryButton->setEnabled(true);
 
         clearList();
         updateList();
@@ -1190,11 +1159,6 @@ void MainWindow::getNumOfTeams()
 
 void MainWindow::sendDataToServer()
 {
-    QFile of("outdata.txt");
-    of.open(QFile::ReadOnly);
-    QByteArray doc = "3" + of.readAll();
-    of.close();
-    _sok->write(doc);
 }
 
 
@@ -1244,4 +1208,9 @@ void MainWindow::readVerbMatrix()
     }
         qDebug() << "Закончили читать матрицу вербовки";
     inf.close();
+}
+
+void MainWindow::loose()
+{
+    this->setDisabled(true);
 }

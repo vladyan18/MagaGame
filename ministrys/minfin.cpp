@@ -7,6 +7,9 @@ MinFin::MinFin(MainWindow *its, bool isBlocked, QWidget *parent) :
     IMinister(parent),
     ui(new Ui::MinFin)
 {
+    list[0] = 1;
+    list[1] = 1;
+    list[2] = 1;
     c.args[0] = 2;
     this->cash = its->cash;
 

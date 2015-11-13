@@ -90,7 +90,10 @@
     <enum>QFrame::NoFrame</enum>
    </property>
    <property name="text">
-    <string>герб</string>
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../resources.qrc">:/gerb.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -287,6 +290,8 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

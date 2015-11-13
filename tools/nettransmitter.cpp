@@ -49,6 +49,12 @@ bool NetTransmitter::sendDataToServer()
 
 void NetTransmitter::onSokConnected()
 {
+    /*
+     *
+     QByteArray t;
+     QTextStream stream(&t);
+     stream << QString::number(numTeam) + nameOfThisTeam;
+     */
     QByteArray ar= QString(QString::number(parentForm->numTeam) + parentForm->nameOfThisTeam).toUtf8();
    _sok->write(ar.data());
 }
@@ -60,26 +66,46 @@ void NetTransmitter::onSokDisconnected()
 
 void NetTransmitter::onSokReadyRead()
 {
-    QFile of;
+    QFile of,mf("verbMatrix.txt");
     QTextStream stream(&of);
+    QTextStream stream1(&mf);
     QString temp;
     int mode;
     QByteArray doc;
     temp = _sok->read(1);
+    qDebug() << temp;
     mode = QString(temp).toInt();
 
-
+QString temp2;
+QTextStream str1(&doc);
     switch (mode)
     {
     case 3:
+        qDebug() << "Принимаем данные от сервера";
         of.setFileName("dataFromServer.txt");
         doc = _sok->readAll();
         of.open(QFile::WriteOnly);
-        stream << doc;
+        while (!str1.atEnd())
+        {
+        temp2 = str1.readLine();
+        if (temp2[0] != 'M')
+            {
+                stream << temp2 << endl;
+            }
+        else
+            {
+                mf.open(QFile::WriteOnly);
+                stream1 << str1.readAll();
+                mf.close();
+                break;
+            }
+        }
         of.close();
         emit dataReceived(3);
+        emit dataReceived(4);
     break;
     case 4:
+        qDebug() << "Принимаем матрицу от сервера";
         of.setFileName("verbMatrix.txt");
         doc = _sok->readAll();
         of.open(QFile::WriteOnly);

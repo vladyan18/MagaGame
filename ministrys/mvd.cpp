@@ -10,7 +10,6 @@ MVD::MVD(MainWindow *its, bool isBlocked, QWidget *parent) :
 {
     ui->setupUi(this);
     c.args[0] = NUMBER_OF_MINISTRY;
-    ui->label->setPixmap(QPixmap("mvd.png"));
 
     if (isBlocked)
     {

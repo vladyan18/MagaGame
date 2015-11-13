@@ -1,11 +1,10 @@
 <RCC>
     <qresource prefix="/">
-        <file>camo.gif</file>
         <file>gerb.png</file>
         <file>camo2.jpg</file>
         <file>star.png</file>
-        <file>star2.png</file>
-        <file>back.png</file>
-        <file>back2.png</file>
+        <file>kgb.png</file>
+        <file>med.png</file>
+        <file>mvd.png</file>
     </qresource>
 </RCC>
