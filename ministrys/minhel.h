@@ -30,8 +30,6 @@ private slots:
 
 private:
     Ui::MinHel *ui;
-    Command c;
-    int countOfTeams;
 };
 
 #endif // MINHEL_H

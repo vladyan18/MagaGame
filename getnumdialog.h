@@ -23,7 +23,7 @@ class GetNumDialog : public QDialog
 
 public:
 
-    explicit GetNumDialog(IMinister *prnt, int mode,int min, int max, QWidget *parent = 0);
+    explicit GetNumDialog(IMinister *prnt, int mode, int nextDialMode, int min, int max, QWidget *parent = 0);
     ~GetNumDialog();
 
 private slots:
@@ -38,6 +38,7 @@ private:
 
     IMinister  *prnt;
     int mode;
+    int nextDialMode;
 };
 
 #endif // GETNUMDIALOG_H

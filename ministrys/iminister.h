@@ -3,6 +3,7 @@
 #include <QDialog>
 #include <Command.h>
 #include <QWidget>
+#include <mainwindow.h>
 
 
 class IMinister : public QDialog
@@ -16,6 +17,10 @@ public:
     }
     Command c;
     bool windowBlocked = false;
+    int countOfTeams;
+    int countOfNukes;
+    int countOfPRO;
+    MainWindow *its;
 };
 
 #endif // IMINISTER_H

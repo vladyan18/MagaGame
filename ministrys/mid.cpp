@@ -104,9 +104,11 @@ MID::~MID()
 
 void MID::on_diversionButton_clicked()
 {
-    PickTheMin *pickDial = new PickTheMin(1,0);
+    PickTheMin *pickDial = new PickTheMin(this,1,0);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
-    pickDial->show();
+    pickDial->exec();
+    ui->approveButton->setEnabled(true);
+    c.args[3] = c.args[2];
     c.args[2] = ui->numOfCountrySpinBox->value();
 
     ui->hookButton->setDisabled(true);
@@ -118,9 +120,11 @@ void MID::on_diversionButton_clicked()
 
 void MID::on_hookButton_clicked()
 {
-    PickTheMin *pickDial = new PickTheMin(2,0);
+    PickTheMin *pickDial = new PickTheMin(this,2,0);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
-    pickDial->show();
+    pickDial->exec();
+    ui->approveButton->setEnabled(true);
+    c.args[3] = c.args[2];
     c.args[2] = ui->numOfCountrySpinBox->value();
 
 
@@ -135,9 +139,11 @@ void MID::on_hookButton_clicked()
 
 void MID::on_freeButton_clicked()
 {
-    PickTheMin *pickDial = new PickTheMin(3,c.args[2] = ui->numOfCountrySpinBox->value(), verbMatrix);
+    PickTheMin *pickDial = new PickTheMin(this,3,c.args[2] = ui->numOfCountrySpinBox->value(), verbMatrix);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
-    pickDial->show();
+    pickDial->exec();
+    ui->approveButton->setEnabled(true);
+    c.args[3] = c.args[2];
     c.args[2] = ui->numOfCountrySpinBox->value();
 
 
@@ -151,14 +157,72 @@ void MID::on_freeButton_clicked()
 
 void MID::on_orderButton_clicked()
 {
-    PickTheMin *pickDial = new PickTheMin(4,c.args[2] = ui->numOfCountrySpinBox->value(), verbMatrix);
+    PickTheMin *pickDial = new PickTheMin(this,4,c.args[2] = ui->numOfCountrySpinBox->value(), verbMatrix);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
-    pickDial->show();
+    pickDial->exec();
+    c.args[3] = c.args[2];
     c.args[2] = ui->numOfCountrySpinBox->value();
     orderFlag = true;
 
+    if (orderFlag)
+    {
+        President *PresDial = new President(parentForm, false);
+        MinFin *FinDial = new MinFin(parentForm,false);
+        MinDef *defDial = new MinDef(parentForm,false);
+        KGB *KGBDial = new KGB(parentForm,100, false);
+        MID *MIDDial = new MID(false);
+        MINUST *MINUSTDial = new MINUST(parentForm,false);
+        MVD *MVDDial = new MVD(parentForm,false);
+        MinCom *MinComDial = new MinCom(parentForm,false);
+        MinHel *MinHelDial = new MinHel(parentForm,false);
+        Secretary *SecretaryDial = new Secretary(parentForm);
 
+        switch (c.args[3])
+        {
+        case 1:
+            connect(PresDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
+            PresDial->exec();
+            break;
+        case 2:
+            connect(FinDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
+            FinDial->exec();
+            break;
+        case 3:
+            connect(defDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
+            defDial->exec();
+            break;
+        case 4:
+            connect(KGBDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
+            KGBDial->exec();
+            break;
+        case 5:
+            connect(MIDDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
+            MIDDial->exec();
+            break;
+        case 6:
+            connect(MINUSTDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
+            MINUSTDial->exec();
+            break;
+        case 7:
+            connect(MVDDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
+            MVDDial->exec();
+            break;
+        case 8:
+            connect(MinComDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
+            MinComDial->exec();
+            break;
+        case 9:
+            connect(MinHelDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
+            MinHelDial->exec();
+            break;
+        case 10:
+            connect(SecretaryDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
+            SecretaryDial->exec();
+            break;
+        }
+    }
 
+    ui->approveButton->setEnabled(true);
     ui->diversionButton->setDisabled(true);
     ui->freeButton->setDisabled(true);
     ui->hookButton->setDisabled(true);
@@ -168,9 +232,11 @@ void MID::on_orderButton_clicked()
 
 void MID::on_killButton_clicked()
 {
-    PickTheMin *pickDial = new PickTheMin(5,0);
+    PickTheMin *pickDial = new PickTheMin(this,5,0);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
-    pickDial->show();
+    pickDial->exec();
+    ui->approveButton->setEnabled(true);
+    c.args[3] = c.args[2];
     c.args[2] = ui->numOfCountrySpinBox->value();
 
 
@@ -183,9 +249,11 @@ void MID::on_killButton_clicked()
 
 void MID::on_spyButton_clicked()
 {
-    PickTheMin *pickDial = new PickTheMin(6,0);
+    PickTheMin *pickDial = new PickTheMin(this,6,0);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
-    pickDial->show();
+    pickDial->exec();
+    ui->approveButton->setEnabled(true);
+    c.args[3] = c.args[2];
     c.args[2] = ui->numOfCountrySpinBox->value();
 
 
@@ -205,68 +273,6 @@ void MID::on_approveButton_clicked()
 }
 void MID::receiveDataFromDial(int com,int choice)
 {
-
-    c.args[1] = com;
-    c.args[3] = choice;
-    if (orderFlag)
-    {
-        President *PresDial = new President(parentForm, false);
-        MinFin *FinDial = new MinFin(parentForm,false);
-        MinDef *defDial = new MinDef(parentForm,false);
-        KGB *KGBDial = new KGB(parentForm,100, false);
-        MID *MIDDial = new MID(false);
-        MINUST *MINUSTDial = new MINUST(parentForm,false);
-        MVD *MVDDial = new MVD(parentForm,false);
-        MinCom *MinComDial = new MinCom(parentForm,false);
-        MinHel *MinHelDial = new MinHel(parentForm,false);
-        Secretary *SecretaryDial = new Secretary(parentForm);
-
-        switch (choice)
-        {
-        case 1:
-            connect(PresDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
-            PresDial->show();
-            break;
-        case 2:
-            connect(FinDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
-            FinDial->show();
-            break;
-        case 3:
-            connect(defDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
-            defDial->show();
-            break;
-        case 4:
-            connect(KGBDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
-            KGBDial->show();
-            break;
-        case 5:
-            connect(MIDDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
-            MIDDial->show();
-            break;
-        case 6:
-            connect(MINUSTDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
-            MINUSTDial->show();
-            break;
-        case 7:
-            connect(MVDDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
-            MVDDial->show();
-            break;
-        case 8:
-            connect(MinComDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
-            MinComDial->show();
-            break;
-        case 9:
-            connect(MinHelDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
-            MinHelDial->show();
-            break;
-        case 10:
-            connect(SecretaryDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
-            SecretaryDial->show();
-            break;
-        }
-    }
-
-    ui->approveButton->setEnabled(true);
 }
 
 void MID::receivedFromMinForm(Command c2)

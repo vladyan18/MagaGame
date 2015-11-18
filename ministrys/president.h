@@ -28,10 +28,14 @@ private slots:
     void on_fireMin_clicked();
     void receiveDataFromDial(int,int);
 
+    void on_giveNukesButton_clicked();
+
+    void on_givePROButton_clicked();
+
+    void on_giveFacButton_clicked();
+
 private:
     Ui::President *ui;
-    Command c;
-    int countOfTeams;
 };
 
 #endif // PRESIDENT_H

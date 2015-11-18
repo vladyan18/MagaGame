@@ -45,18 +45,17 @@ void MVD::on_checkMinButton_clicked()
 
 void MVD::on_arestMin_clicked()
 {
-    PickTheMin *pickDial = new PickTheMin(3,0);
+    PickTheMin *pickDial = new PickTheMin(this,3,0);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
-    pickDial->show();
+    pickDial->exec();
+
+    ui->approveButton->setEnabled(true);
+    ui->suppressRiotButton->setDisabled(true);
+    ui->checkMinButton->setDisabled(true);
 }
 
 void MVD::receiveDataFromDial(int com,int choice)
 {
-    c.args[1] = com;
-    c.args[2] = choice;
-    ui->approveButton->setEnabled(true);
-    ui->suppressRiotButton->setDisabled(true);
-    ui->checkMinButton->setDisabled(true);
 }
 
 void MVD::on_approveButton_clicked()

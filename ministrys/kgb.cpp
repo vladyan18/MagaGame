@@ -34,10 +34,12 @@ KGB::~KGB()
 
 void KGB::on_defRolesButton_clicked()
 {
-    PickTheMin *pickDial = new PickTheMin(1,4);
+    PickTheMin *pickDial = new PickTheMin(this,1,4);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
-    pickDial->show();
-
+    pickDial->exec();
+    c.args[3] = ui->powerSpinBox->value();
+    ui->findMinButton->setDisabled(true);
+    ui->approveButton->setEnabled(true);
 
 }
 
@@ -52,12 +54,6 @@ void KGB::on_findMinButton_clicked()
 
 void KGB::receiveDataFromDial(int com,int choice)
 {
-    c.args[1] = com;
-    c.args[2] = choice;
-    c.args[3] = ui->powerSpinBox->value();
-    ui->findMinButton->setDisabled(true);
-    ui->approveButton->setEnabled(true);
-
 }
 
 void KGB::on_approveButton_clicked()

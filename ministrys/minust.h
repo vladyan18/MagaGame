@@ -28,8 +28,6 @@ private slots:
 
 private:
     Ui::MINUST *ui;
-    Command c;
-    int countOfTeams;
 };
 
 #endif // MINUST_H

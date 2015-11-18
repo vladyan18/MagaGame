@@ -99,14 +99,14 @@ void MainWindow::on_presidentButton_clicked()
 {
 President *PresDial = new President(this, mins[0].isBlocked);
 connect(PresDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
-PresDial->show();
+PresDial->exec();
 }
 
 void MainWindow::on_minFinButton_clicked()
 {
 MinFin *FinDial = new MinFin(this, mins[1].isBlocked);
 connect(FinDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
-FinDial->show();
+FinDial->exec();
 
 }
 
@@ -114,49 +114,49 @@ void MainWindow::on_minDefButton_clicked()
 {
 MinDef *defDial = new MinDef(this, mins[2].isBlocked);
 connect(defDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
-defDial->show();
+defDial->exec();
 }
 
 void MainWindow::on_kgbButton_clicked()
 {
 KGB *KGBDial = new KGB(this, kgbpower, mins[3].isBlocked);
 connect(KGBDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
-KGBDial->show();
+KGBDial->exec();
 }
 
 void MainWindow::on_midButton_clicked()
 {
 MID *MIDDial = new MID(this, mins[4].isBlocked,countOfTeams, verbedMatrix);
 connect(MIDDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
-MIDDial->show();
+MIDDial->exec();
 }
 
 void MainWindow::on_minUstButton_clicked()
 {
 MINUST *MINUSTDial = new MINUST(this, mins[5].isBlocked);
 connect(MINUSTDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
-MINUSTDial->show();
+MINUSTDial->exec();
 }
 
 void MainWindow::on_mvdButton_clicked()
 {
 MVD *MVDDial = new MVD(this, mins[6].isBlocked);
 connect(MVDDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
-MVDDial->show();
+MVDDial->exec();
 }
 
 void MainWindow::on_minComButton_clicked()
 {
 MinCom *MinComDial = new MinCom(this, mins[7].isBlocked);
 connect(MinComDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
-MinComDial->show();
+MinComDial->exec();
 }
 
 void MainWindow::on_minHelButton_clicked()
 {
 MinHel *MinHelDial = new MinHel(this, mins[8].isBlocked);
 connect(MinHelDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
-MinHelDial->show();
+MinHelDial->exec();
 }
 
 
@@ -164,7 +164,7 @@ void MainWindow::on_secretaryButton_clicked()
 {
 Secretary *SecretaryDial = new Secretary(this);
 connect(SecretaryDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromForm(Command)));
-SecretaryDial->show();
+SecretaryDial->exec();
 }
 
 void MainWindow::on_reportButton_clicked()
@@ -485,7 +485,12 @@ void MainWindow::presidentSaid(Command c)
 
     case -2:
         cmds[*row].text = QString::number(*row+1) +": Оказание помощи президентом в делах " + namesOfMins[c.args[2] - 1];
+        if (c.args[3] != this->numTeam)
+        {
+            cmds[*row].text+= " в государстве №" + QString::number(c.args[3]);
+        }
         cmds[*row].arg[0]=c.args[2];
+        cmds[*row].arg[1]=c.args[3];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -512,17 +517,47 @@ void MainWindow::minFinSaid(Command c)
         break;
     case 1:
         cmds[*row].text = QString::number(*row+1) +": Инвестиции в сектора экономики:  ";
-        if (c.args[2]==1)
-        {
-            cmds[*row].text += "Сельское хозяйство, ";
-            if (c.args[3]==2) {
-            cmds[*row].text += "Машиностроение";
-            } else {
-            cmds[*row].text += "Текстиль";
-            }
-        } else {
-            cmds[*row].text += "Машиностроение, Текстиль";
-        }
+       switch (c.args[2])
+       {
+       case 1:
+           cmds[*row].text += "сельское хозяйство, ";
+           switch (c.args[3])
+           {
+           case 2:
+               cmds[*row].text += "тяжелая промышленность ";
+               break;
+           case 3:
+               cmds[*row].text += "легкая промышленность ";
+               break;
+           }
+
+           break;
+       case 2:
+               cmds[*row].text += "тяжелая промышленность, ";
+               switch(c.args[3])
+               {
+               case 1:
+                   cmds[*row].text += "сельское хозяйство" ;
+                   break;
+               case 3:
+                   cmds[*row].text += "легкая промышленность ";
+                   break;
+               }
+           break;
+       case 3:
+                   cmds[*row].text += "легкая промышленность, ";
+                   switch(c.args[3])
+                   {
+                   case 1:
+                       cmds[*row].text += "сельское хозяйство ";
+                       break;
+                   case 2:
+                       cmds[*row].text += "тяжелая промышленность ";
+                       break;
+                   }
+
+           break;
+       }
 
         cmds[*row].arg[0] = c.args[2];
         cmds[*row].arg[1] = c.args[3];
@@ -542,9 +577,34 @@ void MainWindow::minFinSaid(Command c)
         cmds[*row].arg[1] = c.args[3];
         cmds[*row].cost = c.args[3];
         break;
+    case 4:
+        cmds[*row].text = QString::number(*row+1) +": Передача стране №" + QString::number(c.args[2]) + " производственных мощностей ";
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
+        cmds[*row].arg[2] = c.args[4];
+        switch (c.args[3])
+        {
+        case 1:
+            cmds[*row].text +="сельского хозяйства";
+            break;
+        case 2:
+            cmds[*row].text +="тяжелой промышленности";
+            break;
+        case 3:
+            cmds[*row].text +="легкой промышленности";
+            break;
+        }
+        cmds[*row].text += " в размере " + QString::number(c.args[4]);
+
+        break;
     case -2:
         cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром финансов в делах " + namesOfMins[c.args[2] - 1];
+        if (c.args[3] != this->numTeam)
+        {
+            cmds[*row].text+= " в государстве №" + QString::number(c.args[3]);
+        }
         cmds[*row].arg[0]=c.args[2];
+        cmds[*row].arg[1]=c.args[3];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -613,9 +673,24 @@ void MainWindow::minDefSaid(Command c)
         cmds[*row].arg[0] = c.args[2];
         cmds[*row].cost = COST_OF_RAID;
         break;
+    case 8:
+        cmds[*row].text = QString::number(*row+1) +": Передача ядерных ракет стране №" + QString::number(c.args[2]) + ", в количестве " + QString::number(c.args[3]) + " единиц";
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
+        break;
+    case 9:
+        cmds[*row].text = QString::number(*row+1) +": Передача ракет ПРО стране №" + QString::number(c.args[2]) + ", в количестве " + QString::number(c.args[3]) + " единиц";
+        cmds[*row].arg[0] = c.args[2];
+        cmds[*row].arg[1] = c.args[3];
+        break;
     case -2:
         cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром обороны в делах " + namesOfMins[c.args[2] - 1];
-        cmds[*row].arg[0] = c.args[2];
+        if (c.args[3] != this->numTeam)
+        {
+            cmds[*row].text+= " в государстве №" + QString::number(c.args[3]);
+        }
+        cmds[*row].arg[0]=c.args[2];
+        cmds[*row].arg[1]=c.args[3];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -653,7 +728,12 @@ void MainWindow::KGBSaid(Command c)
         break;
     case -2:
         cmds[*row].text = QString::number(*row+1) +": Оказание главой КГБ в делах " + namesOfMins[c.args[2] - 1];
-        cmds[*row].arg[0] = c.args[2];
+        if (c.args[3] != this->numTeam)
+        {
+            cmds[*row].text+= " в государстве №" + QString::number(c.args[3]);
+        }
+        cmds[*row].arg[0]=c.args[2];
+        cmds[*row].arg[1]=c.args[3];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -725,7 +805,12 @@ void MainWindow::midSaid(Command c)
         break;
     case -2:
         cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром иностранных дел в делах " + namesOfMins[c.args[2] - 1];
-        cmds[*row].arg[0] = c.args[2];
+        if (c.args[3] != this->numTeam)
+        {
+            cmds[*row].text+= " в государстве №" + QString::number(c.args[3]);
+        }
+        cmds[*row].arg[0]=c.args[2];
+        cmds[*row].arg[1]=c.args[3];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -756,7 +841,12 @@ void MainWindow::minUstSaid(Command c)
         break;
     case -2:
         cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром юстиции в делах " + namesOfMins[c.args[2] - 1];
-        cmds[*row].arg[0] = c.args[2];
+        if (c.args[3] != this->numTeam)
+        {
+            cmds[*row].text+= " в государстве №" + QString::number(c.args[3]);
+        }
+        cmds[*row].arg[0]=c.args[2];
+        cmds[*row].arg[1]=c.args[3];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -796,7 +886,12 @@ void MainWindow::MVDSaid(Command c)
         break;
     case -2:
         cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром внутренних дел в делах " + namesOfMins[c.args[2] - 1];
-        cmds[*row].arg[0] = c.args[2];
+        if (c.args[3] != this->numTeam)
+        {
+            cmds[*row].text+= " в государстве №" + QString::number(c.args[3]);
+        }
+        cmds[*row].arg[0]=c.args[2];
+        cmds[*row].arg[1]=c.args[3];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -841,7 +936,12 @@ void MainWindow::minComSaid(Command c)
         break;
     case -2:
         cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром по связям с общественностью в делах " + namesOfMins[c.args[2] - 1];
-        cmds[*row].arg[0] = c.args[2];
+        if (c.args[3] != this->numTeam)
+        {
+            cmds[*row].text+= " в государстве №" + QString::number(c.args[3]);
+        }
+        cmds[*row].arg[0]=c.args[2];
+        cmds[*row].arg[1]=c.args[3];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -878,7 +978,12 @@ void MainWindow::minHelSaid(Command c)
         break;
     case -2:
         cmds[*row].text = QString::number(*row+1) +": Оказание помощи министром здравоохранения в делах " + namesOfMins[c.args[2] - 1];
-        cmds[*row].arg[0] = c.args[2];
+        if (c.args[3] != this->numTeam)
+        {
+            cmds[*row].text+= " в государстве №" + QString::number(c.args[3]);
+        }
+        cmds[*row].arg[0]=c.args[2];
+        cmds[*row].arg[1]=c.args[3];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -900,7 +1005,12 @@ void MainWindow::zamSaid(Command c) //TODO
     {
     case -2:
         cmds[*row].text = QString::number(*row+1) +": Оказание помощи заместителем в делах " + namesOfMins[c.args[2] - 1];
-        cmds[*row].arg[0] = c.args[2];
+        if (c.args[3] != this->numTeam)
+        {
+            cmds[*row].text+= " в государстве №" + QString::number(c.args[3]);
+        }
+        cmds[*row].arg[0]=c.args[2];
+        cmds[*row].arg[1]=c.args[3];
         cmds[*row].cost=COST_OF_HELP;
         break;
     }
@@ -936,6 +1046,7 @@ void MainWindow::on_approvePlan_clicked()
   appr = new Approved();
   appr->show();
   }
+  this->setDisabled(true);
 }
 
 QString MainWindow::beautifyNumber(int num)
@@ -968,6 +1079,7 @@ QString MainWindow::beautifyNumber(int num)
 
 void MainWindow::readData() // REMAKE
 {
+    this->setEnabled(true);
  //  repDial->clear();
    QString outputCodes;
    QFile in("dataFromServer.txt");

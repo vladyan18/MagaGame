@@ -34,8 +34,6 @@ private slots:
 
 private:
     Ui::MVD *ui;
-    Command c;
-    int countOfTeams;
 };
 
 #endif // MVD_H

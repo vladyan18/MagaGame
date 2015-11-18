@@ -32,7 +32,6 @@ private slots:
     void receiveDataFromDial(int,int);
 private:
     Ui::KGB *ui;
-    int countOfTeams;
 };
 
 #endif // KGB_H

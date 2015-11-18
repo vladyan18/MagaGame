@@ -46,9 +46,7 @@ private slots:
 
 private:
     Ui::MID *ui;
-    Command c;
     bool orderFlag = false;
-    int countOfTeams;
     bool **verbMatrix;
     MainWindow *parentForm;
 };

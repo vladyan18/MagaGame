@@ -44,9 +44,10 @@ void MinDef::on_pushButton_clicked()
 void MinDef::on_pushButton_2_clicked()
 {
     c.args[1] = 1;
-    dial = new GetNumDialog(this,2,-countOfNukes,1000);
-    dial->show();
+    dial = new GetNumDialog(this,2,0,-countOfNukes,1000);
     this->setDisabled(true);
+    dial->exec();
+
 
     ui->pushButton_3->setDisabled(1);
     ui->pushButton_4->setDisabled(1);
@@ -61,9 +62,10 @@ void MinDef::on_pushButton_2_clicked()
 void MinDef::on_pushButton_3_clicked()
 {
     c.args[1] = 2;
-    dial = new GetNumDialog(this,2,-countOfPRO,1000);
-    dial->show();
+    dial = new GetNumDialog(this,2,0,-countOfPRO,1000);
     this->setDisabled(true);
+    dial->exec();
+
 
     ui->pushButton_2->setDisabled(1);
     ui->pushButton_4->setDisabled(1);
@@ -81,13 +83,10 @@ void MinDef::on_pushButton_7_clicked()
 {
     c.args[1] = 3;
 
-    dial = new GetNumDialog(this,1,1,countOfTeams);
-    dial->show();
+    dial = new GetNumDialog(this,1,3,1,countOfTeams);
     this->setDisabled(true);
+    dial->exec();
 
-    dial = new GetNumDialog(this,3,1,countOfNukes);
-    dial->show();
-    this->setDisabled(true);
 
     ui->pushButton_2->setDisabled(1);
     ui->pushButton_3->setDisabled(1);
@@ -103,9 +102,10 @@ void MinDef::on_pushButton_7_clicked()
 void MinDef::on_pushButton_4_clicked()
 {
     c.args[1] = 4;
-    dial = new GetNumDialog(this,2,1,countOfPRO);
-    dial->show();
+    dial = new GetNumDialog(this,2,0,1,countOfPRO);
     this->setDisabled(true);
+    dial->exec();
+
 
     ui->pushButton_2->setDisabled(1);
     ui->pushButton_3->setDisabled(1);
@@ -119,9 +119,10 @@ void MinDef::on_pushButton_4_clicked()
 void MinDef::on_pushButton_8_clicked()
 {
     c.args[1] = 5;
-    dial = new GetNumDialog(this,1,1,countOfTeams);
-    dial->show();
+    dial = new GetNumDialog(this,1,0,1,countOfTeams);
     this->setDisabled(true);
+    dial->exec();
+
 
 
     ui->pushButton_2->setDisabled(1);
@@ -137,9 +138,10 @@ void MinDef::on_pushButton_8_clicked()
 void MinDef::on_pushButton_6_clicked()
 {
     c.args[1] = 6;
-    dial = new GetNumDialog(this,1,1,countOfTeams);
-    dial->show();
+    dial = new GetNumDialog(this,1,0,1,countOfTeams);
     this->setDisabled(true);
+    dial->exec();
+
 
     ui->pushButton_2->setDisabled(1);
     ui->pushButton_3->setDisabled(1);
@@ -153,9 +155,10 @@ void MinDef::on_pushButton_6_clicked()
 void MinDef::on_pushButton_5_clicked()
 {
     c.args[1] = 7;
-    dial = new GetNumDialog(this,1,1,countOfTeams);
-    dial->show();
+    dial = new GetNumDialog(this,1,0,1,countOfTeams);
     this->setDisabled(true);
+    dial->exec();
+
 
     ui->pushButton_2->setDisabled(1);
     ui->pushButton_3->setDisabled(1);

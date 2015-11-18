@@ -7,6 +7,7 @@
 #include <mainwindow.h>
 #include <getnumdialog.h>
 #include <ministrys/iminister.h>
+#include <dialogs/pickthemin.h>
 
 
 class GetNumDialog;
@@ -25,6 +26,7 @@ class MinFin : public IMinister
 public:
     explicit MinFin(MainWindow *its, bool isBlocked, QWidget *parent = 0);
     ~MinFin();
+    int cash;
 signals:
     void sendDataToMainForm(Command);
 
@@ -37,14 +39,13 @@ private slots:
     void on_playButton_clicked();
 
     void on_transButton_clicked();
+    void receiveDataFromDial(int, int, int choice2);
 
 private:
     Ui::MinFin *ui;
     void updateList();
-    int cash;
-
     int list[3];
-    int countOfTeams;
+
 };
 
 #endif // MINFIN_H

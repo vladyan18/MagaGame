@@ -15,7 +15,7 @@ Statistic::Statistic(MainWindow *prnt, QWidget *parent) :
     ui->govStat->append("Уровень  министра внутренних дел: <span style=\" color:green;\">" + QString::number(prnt->mins[6].lvl) + "</span>");
     ui->govStat->append("Уровень  министра по связям с общестенностью: <span style=\" color:green;\">" + QString::number(prnt->mins[7].lvl) + "</span>");
     ui->govStat->append("Уровень  министра здравоохранения: <span style=\" color:green;\">" + QString::number(prnt->mins[8].lvl) + "</span>");
-    ui->govStat->append("Уровень  заместителя: <span style=\" color:green;\">" + QString::number(prnt->mins[9].lvl) + "</span>");
+    ui->govStat->append("Уровень  секретаря: <span style=\" color:green;\">" + QString::number(prnt->mins[9].lvl) + "</span>");
 
 
     ui->ecStat->append("Государственный Резерв: <span style=\" color:green;\">" + prnt->beautifyNumber(prnt->cash) + "</span>");

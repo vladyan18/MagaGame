@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>509</width>
-    <height>218</height>
+    <height>282</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,7 +40,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>80</y>
+     <y>160</y>
      <width>471</width>
      <height>51</height>
     </rect>
@@ -57,7 +57,7 @@
    <property name="geometry">
     <rect>
      <x>160</x>
-     <y>150</y>
+     <y>230</y>
      <width>181</width>
      <height>41</height>
     </rect>
@@ -70,6 +70,16 @@
    </property>
    <property name="standardButtons">
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="listWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>70</y>
+     <width>471</width>
+     <height>71</height>
+    </rect>
    </property>
   </widget>
  </widget>

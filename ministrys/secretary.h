@@ -31,8 +31,6 @@ private slots:
 
 private:
     Ui::Secretary *ui;
-    Command c;
-    int countOfTeams;
 };
 
 #endif // SECRETARY_H

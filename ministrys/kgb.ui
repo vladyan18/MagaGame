@@ -1297,8 +1297,8 @@
     </palette>
    </property>
    <property name="text">
-    <string>Поиск министра
-разведки</string>
+    <string>Поиск шпионов 
+ этого государства</string>
    </property>
    <property name="default">
     <bool>true</bool>
@@ -1306,7 +1306,7 @@
   </widget>
   <widget class="QPushButton" name="approveButton">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
@@ -1410,6 +1410,9 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="minimum">
+    <number>1</number>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">

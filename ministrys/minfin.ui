@@ -29,9 +29,9 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>440</x>
      <y>370</y>
-     <width>301</width>
+     <width>291</width>
      <height>71</height>
     </rect>
    </property>
@@ -46,7 +46,7 @@
   </widget>
   <widget class="QPushButton" name="investmentButton">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
@@ -70,7 +70,7 @@
     <rect>
      <x>30</x>
      <y>270</y>
-     <width>271</width>
+     <width>291</width>
      <height>51</height>
     </rect>
    </property>
@@ -109,7 +109,7 @@
     <rect>
      <x>440</x>
      <y>270</y>
-     <width>271</width>
+     <width>291</width>
      <height>51</height>
     </rect>
    </property>

@@ -58,7 +58,7 @@ void Report::saveList(List cmds[], int listSize)
 
 void Report::addCodes(QString codes)
 {
-    int command, arg1, arg2;
+    int command, arg1, arg2, arg3;
     QTextStream stream(&codes);
     while(!stream.atEnd())
     {
@@ -66,14 +66,18 @@ void Report::addCodes(QString codes)
         switch(command)
         {
         case 100:
-            ui->textBrowser->append("В нашей стране совершена диверсия!<img source=\"sabotage2.jpg\"/>");
+            ui->textBrowser->append("В нашей стране совершена диверсия!");
             ui->textBrowser->append("<img source=\"sabotage2.jpg\"/>");
             break;
         case 101:
             ui->textBrowser->append("Один из наших министров прервал все связи с зарубежной разведкой.");
             break;
+        case 110:
+            stream >> arg1;
+            ui->textBrowser->append("Был убит министр №" + QString::number(arg1) + "!" );
+            break;
         case 200:
-            ui->textBrowser->append("Наше государство было подло оклеветано в СМИ! <img source=\"pravda.jpg\"/>");
+            ui->textBrowser->append("Наше государство было подло оклеветано в СМИ!");
             ui->textBrowser->append("<img source=\"pravda.jpg\"/>");
             break;
         case 201:
@@ -91,15 +95,59 @@ void Report::addCodes(QString codes)
             break;
         case 205:
             stream >> arg1 >> arg2;
-            ui->textBrowser->append("Нам поступил транш суммой " + beautifyNumber(arg1) + " от государства №" + QString::number(arg2) + ".");
+            ui->textBrowser->append("<span style=\"color:green; font-size:12pt\">Нам поступил транш суммой " + beautifyNumber(arg1) + " от государства №" + QString::number(arg2) + ".</span>");
             break;
         case 206:
             stream >> arg1;
             ui->textBrowser->append("В ходе торгов на бирже прибыль составила:  " + beautifyNumber(arg1));
             break;
+        case 207:
+            stream >> arg1;
+            ui->textBrowser->append("<span style=\"color:blue; font-size:15pt\">Обнаружена активность агентов государства №" + QString::number(arg1) + " в нашем правительстве!</span>");
+            break;
+        case 208:
+            ui->textBrowser->append("<span style=\"color:black; font-size:15pt\">В стране резко выросло количество больных! Нужно принять меры!</span>");
+            break;
+            break;
+        case 209:
+            ui->textBrowser->append("<span style=\"color:black; font-size:15pt\">Разработанная вакцина оказалась неэффективна!</span>");
+            break;
+        case 210:
+            stream >> arg1;
+            stream >> arg2;
+            ui->textBrowser->append("<span style=\"color:green; font-size:12pt\">Государство №"+ QString::number(arg1) +" передало нам ядерные ракеты в количестве " + QString::number(arg2) +" единиц</span>");
+            break;
+        case 211:
+            stream >> arg1;
+            stream >> arg2;
+            ui->textBrowser->append("<span style=\"color:green; font-size:12pt\">Государство №"+ QString::number(arg1) +" передало нам ракеты ПРО в количестве " + QString::number(arg2) +" единиц</span>");
+            break;
+        case 212:
+            stream >> arg1 >> arg2 >> arg3;
+            switch(arg2)
+            {
+            case 1:
+                ui->textBrowser->append("<span style=\"color:green; font-size:12pt\">Государство №"+ QString::number(arg1) +" оказало нам помощь в сельском хоязйстве в размере" + beautifyNumber(arg3) + "</span>");
+                break;
+            case 2:
+                ui->textBrowser->append("<span style=\"color:green; font-size:12pt\">Государство №"+ QString::number(arg1) +" оказало нам помощь в тяжелой промышленности в размере" + beautifyNumber(arg3)+ "</span>");
+                break;
+            case 3:
+                ui->textBrowser->append("<span style=\"color:green; font-size:12pt\">Государство №"+ QString::number(arg1) +" оказало нам помощь в легкой промышленности в размере" + beautifyNumber(arg3)+ "</span>");
+                break;
+            }
+            break;
+        case 214:
+            ui->textBrowser->append("<span style=\"color:blue; font-size:15pt\">В нашем правительстве обнаружены шпионы!</span>");
+
+            break;
         case 215:
             ui->textBrowser->append("<span style=\"color:green; font-size:30pt\">Новое правительство готово к работе!</span>");
             break;
+        case 216:
+            ui->textBrowser->append("<span style=\"color:green; font-size:12pt\">КГБ сообщает, что все чисто, вроде бы...</span>");
+            break;
+
 
         case 300:
             ui->textBrowser->append("<span style=\"color:red;font-weight:600; font-size:30pt\">НА НАШЕЙ ТЕРРИТОРИИ ПРОИЗОШЕЛ ЯДЕРНЫЙ ВЗРЫВ!</span>");

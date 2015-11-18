@@ -34,8 +34,6 @@ private slots:
 
 private:
     Ui::MinCom *ui;
-    Command c;
-    int countOfTeams;
 };
 
 #endif // MINCOM_H

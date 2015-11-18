@@ -44,11 +44,7 @@ private slots:
 
 private:
     Ui::MinDef *ui;
-    int countOfPRO;
-    int countOfNukes;
     GetNumDialog *dial;
-
-    int countOfTeams;
 };
 
 #endif // MINDEF_H
