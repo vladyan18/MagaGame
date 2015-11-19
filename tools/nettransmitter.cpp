@@ -66,9 +66,8 @@ void NetTransmitter::onSokDisconnected()
 
 void NetTransmitter::onSokReadyRead()
 {
-    QFile of,mf("verbMatrix.txt");
+    QFile of;
     QTextStream stream(&of);
-    QTextStream stream1(&mf);
     QString temp;
     int mode;
     QByteArray doc;
@@ -78,40 +77,62 @@ void NetTransmitter::onSokReadyRead()
 
 QString temp2;
 QTextStream str1(&doc);
-    switch (mode)
-    {
-    case 3:
         qDebug() << "Принимаем данные от сервера";
         of.setFileName("dataFromServer.txt");
         doc = _sok->readAll();
+        int res[3] = {1,0,0};
+        int mode1 = 0;
         of.open(QFile::WriteOnly);
+
         while (!str1.atEnd())
         {
         temp2 = str1.readLine();
-        if (temp2[0] != 'M')
-            {
+        switch (mode1)
+        {
+        case 0:
+            if (temp2[0] != 'M' && temp2[0] != 'P')
+                {
+
+                    stream << temp2 << endl;
+                }
+            else
+                if (temp2[0] == 'M')
+                {
+                    mode1 = 1;
+                    res[1] = 1;
+                    of.close();
+                    of.setFileName("verbMatrix.txt");
+                    of.open(QFile::WriteOnly);
+                }
+                else
+                {
+                    mode1 = 2;
+                    res[2] = 1;
+                    of.close();
+                    of.setFileName("reconData.txt");
+                    of.open(QFile::WriteOnly);
+                }
+            break;
+        case 1:
+           if (temp2[0] != 'P')
+           stream << temp2 << endl;
+           else
+           {
+               mode1 = 2;
+               res[2] = 1;
+               of.close();
+               of.setFileName("reconData.txt");
+               of.open(QFile::WriteOnly);
+           }
+            break;
+        case 2:
                 stream << temp2 << endl;
-            }
-        else
-            {
-                mf.open(QFile::WriteOnly);
-                stream1 << str1.readAll();
-                mf.close();
-                break;
-            }
+            break;
         }
-        of.close();
-        emit dataReceived(3);
-        emit dataReceived(4);
-    break;
-    case 4:
-        qDebug() << "Принимаем матрицу от сервера";
-        of.setFileName("verbMatrix.txt");
-        doc = _sok->readAll();
-        of.open(QFile::WriteOnly);
-        stream << doc;
-        of.close();
-        emit dataReceived(4);
-        break;
     }
+        of.close();
+
+        if (res[0])emit dataReceived(3);
+        if (res[1])emit dataReceived(4);
+        if (res[2])emit dataReceived(5);
 }

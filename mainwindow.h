@@ -76,6 +76,7 @@ private slots:
     void onSokConnected();
     void onSokDisconnected();
     void readFromServer(int code);
+    void readReconData();
 
     void on_numOfTeamSpinBox_editingFinished();
     void on_nameEdit_editingFinished();

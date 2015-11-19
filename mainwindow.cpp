@@ -17,6 +17,7 @@
 #include <dialogs/report.h>
 #include <dialogs/statistic.h>
 #include <tools/nettransmitter.h>
+#include <dialogs/reconreport.h>
 #include <QFile>
 #include <QTextStream>
 #include <QtNetwork>
@@ -1194,6 +1195,10 @@ void MainWindow::readFromServer(int code)
             qDebug() << "Матрица вербовки";
         readVerbMatrix();
         break;
+    case 5:
+        qDebug() << "Данные разведки";
+    readReconData();
+    break;
     }
 }
 
@@ -1335,4 +1340,48 @@ void MainWindow::readVerbMatrix()
 void MainWindow::loose()
 {
     this->setDisabled(true);
+}
+
+void MainWindow::readReconData()
+{
+    ReconReport *dial = new ReconReport;
+    QFile inf("reconData.txt");
+    inf.open(QFile::ReadOnly);
+    QTextStream stream(&inf);
+    Command com;
+    if (!stream.atEnd())
+    {
+
+    int mode = 0, country = 0;
+    QString temp;
+    char c;
+    QTextStream *stream2 = new QTextStream(&temp);
+    while (!stream.atEnd())
+    {
+    temp = stream.readLine();
+    stream2 = new QTextStream(&temp);
+
+    if (temp[0] == 'R' || temp[0] == 'F')
+        {
+            if (temp[0] == 'R')
+                mode = 1;
+            else
+                mode = 2;
+            *stream2 >> c >> country;
+            continue;
+        }
+
+    for (int i = 0; i < 7; i++)
+        {
+
+            *stream2 >> com.args[i];
+            qDebug() << com.args[i];
+        }
+    dial->addCommand(mode,country,com);
+
+    }
+
+    dial->show();
+    }
+    inf.close();
 }
