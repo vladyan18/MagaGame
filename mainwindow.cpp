@@ -22,6 +22,7 @@
 #include <QtNetwork>
 #include <QDebug>
 #include <QByteArray>
+#include <QMessageBox>
 
 #define COST_OF_NUKE_CREATION    2000000
 #define COST_OF_NUKE_DESTRUCTION 100000
@@ -59,6 +60,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     transmitter = new NetTransmitter(this);
     namesOfMins = new QString[10] {"президента", "министра финансов", "министра обороны", "главы КГБ",
                         "министра иностранных дел", "министра юстиции", "министра внутренних дел",
@@ -85,6 +87,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->listWidget->setCurrentRow(0);
 
 
+    QMessageBox *dial = new QMessageBox(
+                "Внимание!",
+                "Подключение к серверу станет доступным после ввода названия страны в соответствующее поле.",
+                QMessageBox::Information,
+                QMessageBox::Ok,
+                QMessageBox::NoButton,
+                QMessageBox::NoButton);
+    dial->show();
 
 
 }

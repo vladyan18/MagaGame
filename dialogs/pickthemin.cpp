@@ -135,7 +135,7 @@ void PickTheMin::on_comboBox_activated(int index)
     if (step == 1)
     {
         choice = index;
-        if (mode == 1)
+        if (mode == 1 )
         {
             QString names[3] = {"Сельское хозяйство", "Тяжелая промышленность", "Легкая промышленность"};
             ui->listWidget->addItem(names[index]);
@@ -157,8 +157,10 @@ void PickTheMin::on_comboBox_activated(int index)
         }
     }
 
-    if (mode == 1)
+    if (mode == 2)
     {
+        QString names[3] = {"Сельское хозяйство", "Тяжелая промышленность", "Легкая промышленность"};
+        ui->listWidget->addItem(names[index]);
     }
     else
     {

@@ -72,6 +72,7 @@ MID::MID(MainWindow *its, bool isBlocked, int countOfTeams, bool **verbMatrix, Q
     }
     }
 
+
     this->countOfTeams = countOfTeams;
     this->verbMatrix = verbMatrix;
     c.args[0] = 5;
@@ -79,8 +80,7 @@ MID::MID(MainWindow *its, bool isBlocked, int countOfTeams, bool **verbMatrix, Q
     ui->setupUi(this);
     if (this->countOfTeams != 0)
     ui->numOfCountrySpinBox->setMaximum(countOfTeams);
-
-
+    else ui->numOfCountrySpinBox->setDisabled(true);
 
     if (countOfAgents == 0)
     {

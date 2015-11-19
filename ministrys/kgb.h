@@ -15,7 +15,7 @@ class KGB : public IMinister
     Q_OBJECT
 
 public:
-    explicit KGB(MainWindow *its, int,bool isBlocked, QWidget *parent = 0);
+    explicit KGB(MainWindow *its, int power,bool isBlocked, QWidget *parent = 0);
     ~KGB();
 signals:
     void sendDataToMainForm(Command);
@@ -27,11 +27,10 @@ private slots:
 
     void on_defRolesButton_clicked();
 
-    void on_powerSpinBox_editingFinished();
-
     void receiveDataFromDial(int,int);
 private:
     Ui::KGB *ui;
+    int kgbPower;
 };
 
 #endif // KGB_H

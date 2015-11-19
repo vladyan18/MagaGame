@@ -40,6 +40,11 @@ GetNumDialog::GetNumDialog(IMinister *prnt, int mode,int nextDialMode, int min, 
         ui->label->setText("Введите размер мощностей:");
         this->setWindowTitle("Выбор мощностей");
         break;
+    case 7:
+        ui->label->setText("Введите силу:");
+        ui->spinBox->setSingleStep(10);
+        this->setWindowTitle("Выбор силы");
+        break;
     }
 
     if (max >= min)
@@ -102,6 +107,9 @@ void GetNumDialog::on_pushButton_clicked()
     case 6:
         prnt->c.args[4] = ui->spinBox->value();
         prnt->setEnabled(true);
+    case 7:
+        prnt->c.args[3] = ui->spinBox->value();
+        prnt->setEnabled(true);
     }
 
     }
@@ -145,4 +153,12 @@ void GetNumDialog::on_GetNumDialog_finished(int result)
     prnt->c.args[0] = -1;
     prnt->c.args[1] = -1;
     prnt->setEnabled(true);
+}
+
+void GetNumDialog::on_spinBox_valueChanged(int arg1)
+{
+    if (mode == 7 && (arg1 % 10 != 0))
+    {
+        ui->spinBox->setValue((arg1 / 10) * 10);
+    }
 }

@@ -86,7 +86,7 @@ void President::on_giveFacButton_clicked()
     dial->exec();
     temp = c.args[2];
 
-    PickTheMin *dial2 = new PickTheMin(this,4,0,0,0);
+    PickTheMin *dial2 = new PickTheMin(this,4,0,2,0);
     dial2->exec();
     c.args[3] = c.args[2];
     c.args[2] = temp;

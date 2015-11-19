@@ -33,6 +33,8 @@ private slots:
 
     void on_GetNumDialog_finished(int result);
 
+    void on_spinBox_valueChanged(int arg1);
+
 private:
     Ui::GetNumDialog *ui;
 
