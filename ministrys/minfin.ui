@@ -48,7 +48,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>8</pointsize>
     </font>
    </property>
    <property name="toolTip">
@@ -164,7 +164,7 @@
     <rect>
      <x>450</x>
      <y>150</y>
-     <width>231</width>
+     <width>251</width>
      <height>41</height>
     </rect>
    </property>

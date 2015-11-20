@@ -104,12 +104,15 @@ void GetNumDialog::on_pushButton_clicked()
     case 5:
         prnt->c.args[2] = ui->spinBox->value();
         prnt->setEnabled(true);
+        break;
     case 6:
         prnt->c.args[4] = ui->spinBox->value();
         prnt->setEnabled(true);
+        break;
     case 7:
         prnt->c.args[3] = ui->spinBox->value();
         prnt->setEnabled(true);
+        break;
     }
 
     }

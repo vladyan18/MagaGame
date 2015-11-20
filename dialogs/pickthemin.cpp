@@ -162,7 +162,7 @@ void PickTheMin::on_comboBox_activated(int index)
         QString names[3] = {"Сельское хозяйство", "Тяжелая промышленность", "Легкая промышленность"};
         ui->listWidget->addItem(names[index]);
     }
-    else
+    else if (mode == 0)
     {
     QString names[10] = {"Президент", "Министр финансов", "Министр обороны", "Глава КГБ",
                             "Министр иностранных дел", "Министр юстиции", "Министр внутренних дел",

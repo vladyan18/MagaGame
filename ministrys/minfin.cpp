@@ -45,7 +45,6 @@ void MinFin::on_approveButton_clicked()
 void MinFin::on_investmentButton_clicked()
 {
    PickTheMin *dial = new PickTheMin(this,1,0,1,0);
-   connect(dial,SIGNAL(sendDataToParent(int,int,int)),this,SLOT(receiveDataFromDial(int,int,int)));
    ui->playButton->setDisabled(1);
    ui->transButton->setDisabled(true);
    dial->exec();
@@ -54,7 +53,12 @@ void MinFin::on_investmentButton_clicked()
 void MinFin::on_playButton_clicked()
 {
     c.args[1] = 2;
-    GetNumDialog *dial = new GetNumDialog(this, 4,5,1, cash);
+
+    GetNumDialog *dial = new GetNumDialog(this, 4,0,1, cash);
+    this->setDisabled(true);
+    dial->exec();
+
+    dial = new GetNumDialog(this, 5,0,-100, 100);
     this->setDisabled(true);
     dial->exec();
 }
