@@ -107,6 +107,8 @@ private slots:
 
     void on_reportButton_clicked();
 
+    void on_nameEdit_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     List *cmds;

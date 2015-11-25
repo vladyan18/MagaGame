@@ -38,7 +38,6 @@ private slots:
 
     void on_playButton_clicked();
 
-    void on_transButton_clicked();
     void receiveDataFromDial(int, int, int choice2);
 
 private:

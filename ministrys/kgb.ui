@@ -875,7 +875,7 @@
     </palette>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: 1.000.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Распределение опыта главы КГБ между министрами для защиты от вербовки.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: 500.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Распределение опыта главы КГБ между министрами для защиты от вербовки.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(229, 231, 240);</string>
@@ -1312,7 +1312,7 @@
     </palette>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: 3.000.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Поиск шпионов указанного гоударства &lt;/span&gt;&lt;span style=&quot; font-size:7pt;&quot;&gt;под каждой кроватью в стране.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: 3.000.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Поиск шпионов указанного гоударства &lt;/span&gt;&lt;span style=&quot; font-size:7pt;&quot;&gt;под каждой кроватью в стране.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(229, 231, 240);</string>

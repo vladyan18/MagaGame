@@ -108,3 +108,12 @@ void President::on_giveFacButton_clicked()
     }
 
 }
+
+void President::on_giveMoney_clicked()
+{
+    c.args[0] = 2;
+    c.args[1] = 3;
+    GetNumDialog *dial = new GetNumDialog(this, 4,1,1, its->cash);
+    this->setDisabled(true);
+    dial->exec();
+}

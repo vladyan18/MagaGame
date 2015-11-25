@@ -26,6 +26,7 @@ void Secretary::on_incLevelButton_clicked()
     pickDial->exec();
     c.args[0] = c.args[2];
     c.args[2] = -1;
+
     ui->approveButton->setEnabled(true);
     ui->helpButton->setDisabled(true);
 }

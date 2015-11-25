@@ -67,31 +67,31 @@ void Report::addCodes(QString codes)
         {
         case 100:
             ui->textBrowser->append("В нашей стране совершена диверсия!");
-            ui->textBrowser->append("<img source=\"sabotage2.jpg\"/>");
+            ui->textBrowser->append("<img source=\":/sabotage2.jpg\"/>");
             break;
         case 101:
             ui->textBrowser->append("Один из наших министров прервал все связи с зарубежной разведкой.");
             break;
         case 110:
             stream >> arg1;
-            ui->textBrowser->append("Был убит министр №" + QString::number(arg1) + "!" );
+            ui->textBrowser->append("<span style=\"font-size:14pt; font-weight:600; color:#ee3901;\">Был убит министр №" + QString::number(arg1) + "!</span>" );
             break;
         case 200:
             ui->textBrowser->append("Наше государство было подло оклеветано в СМИ!");
-            ui->textBrowser->append("<img source=\"pravda.jpg\"/>");
+            ui->textBrowser->append("<img source=\":/pravda.jpg\"/>");
             break;
         case 201:
             ui->textBrowser->append("Выдвинув опровержение, одно из государств выставило нас дураками в СМИ!");
-            ui->textBrowser->append("<img source=\"pravda.jpg\"/>");
+            ui->textBrowser->append("<img source=\":/pravda.jpg\"/>");
             break;
         case 202:
-            ui->textBrowser->append("<span style=\"font-size:20pt; font-weight:600; color:#ee3901;\">В нашей стране восстание! Работа всех секторов экономики нарушена, мы несем огромные убытки!</span> <img source=\"riot.jpg\"/>");
+            ui->textBrowser->append("<span style=\"font-size:20pt; font-weight:600; color:#ee3901;\">В нашей стране восстание! Работа всех секторов экономики нарушена, мы несем огромные убытки!</span> <img source=\":/riot.jpg\"/>");
             break;
         case 203:
             ui->textBrowser->append("<span style=\"color:green; font-size:15pt\">Удар сил порядка остановил восстание в нашей стране!</span>");
             break;
         case 204:
-            ui->textBrowser->append("<span style=\"color:#ee3901; font-size:20pt\">Расстрелы мирных граждан вызвали недовольство!</span>");
+            ui->textBrowser->append("<span style=\"color:#ee3901; font-size:20pt\">Репрессии в мирное врем вызвали недовольство!</span>");
             break;
         case 205:
             stream >> arg1 >> arg2;
@@ -145,23 +145,67 @@ void Report::addCodes(QString codes)
             ui->textBrowser->append("<span style=\"color:green; font-size:30pt\">Новое правительство готово к работе!</span>");
             break;
         case 216:
-            ui->textBrowser->append("<span style=\"color:green; font-size:12pt\">КГБ сообщает, что все чисто, вроде бы...</span>");
+            ui->textBrowser->append("<span style=\"color:green; font-size:12pt\">КГБ сообщает, что все чисто. Вроде бы...</span>");
             break;
 
 
         case 300:
             ui->textBrowser->append("<span style=\"color:red;font-weight:600; font-size:30pt\">НА НАШЕЙ ТЕРРИТОРИИ ПРОИЗОШЕЛ ЯДЕРНЫЙ ВЗРЫВ!</span>");
-            ui->textBrowser->append("<img source=\"nuke1.jpg\"/>");
+            ui->textBrowser->append("<img source=\":/nuke1.jpg\"/>");
             ui->textBrowser->append("<span style=\"color:red; font-weight:600; font-size:16pt\">Огромные потери среди населения! Повреждены важные объекты промышленности и инфраструктуры.</span>");
+            break;
+        case 306:
+            stream >> arg1;
+            ui->textBrowser->append("<span style=\"color:red;font-weight:600; font-size:20pt\">На территории нашего соседа, государства №" + QString::number(arg1) +" произошел ядерный взрыв!</span>");
+            ui->textBrowser->append("<img source=\":/rad.jpg\"/>");
+            ui->textBrowser->append("<span style=\"color:red; font-weight:600; font-size:12pt\">Мы оказались подвержены негативным факторам взрыва! Повреждены важные объекты промышленности и инфраструктуры.</span>");
+            break;
+        case 307:
+            stream >> arg1 >> arg2;
+            ui->textBrowser->append("<span style=\"color:green; font-weight:600; font-size:13pt\">Ракеты, выпущенные по гос-ву №" + QString::number(arg1) + " достигли цели в количестве " + QString::number(arg2) + "!</span>");
+            ui->textBrowser->append("<img source=\":/nuke2.jpg\"/>");
+            break;
+        case 308:
+            stream >> arg1;
+            ui->textBrowser->append("<span style=\"color:black; font-weight:600; font-size:13pt\">Ядерная атака на гос-во №" + QString::number(arg1) + " была полностью отражена их силами ПРО.</span>");
+            break;
+        case 309:
+            stream >> arg1;
+            ui->textBrowser->append("<span style=\"color:green; font-weight:600; font-size:20pt\">Наша доблестная армия захватила государство №" + QString::number(arg1) + "!</span>");
+            ui->textBrowser->append("<img source=\":/victory.jpg\"/>");
             break;
         case 310:
             break;
+        case 311:
+            stream >> arg1;
+            ui->textBrowser->append("<span style=\"color:red; font-weight:600; font-size:15pt\">Государство №" + QString::number(arg1) + " смогло дать отпор нашим войскам.</span>");
+            ui->textBrowser->append("<span style=\"color:red; font-weight:600; font-size:10pt\">Военная операция провалилась. Мы понесли потери.</span>");
+            ui->textBrowser->append("<img source=\":/looseInWar.jpg\"/>");
+            break;
+        case 312:
+            stream >> arg1;
+            ui->textBrowser->append("<span style=\"color:green; font-weight:600; font-size:20pt\">Нашим войскам удалось остановить вторжение государства №" + QString::number(arg1) + "!</span>");
+            break;
+        case 313:
+            stream >> arg1;
+            ui->textBrowser->append("<span style=\"color:red; font-weight:600; font-size:25pt\">Война!</span>");
+            ui->textBrowser->append("<span style=\"color:red; font-weight:600; font-size:15pt\">Государство №" + QString::number(arg1) + " объявило нам войну! Их вооруженные силы движутся к нашей границе!</span>");
+            break;
+        case 314:
+            stream >> arg1;
+            ui->textBrowser->append("<span style=\"color:orange; font-weight:600; font-size:15pt\">Мы объявили войну государству №" + QString::number(arg1) + "! Наши войска выдвинулись к их границе!</span>");
+            break;
         case 320:
+            break;
+        case 400:
+            stream >> arg1;
+            ui->textBrowser->append("<span style=\"color:red; font-weight:600; font-size:10pt\">Государство №" + QString::number(arg1) + " совершило набег на наши земли!</span>");
             break;
         case 500:
             stream >> arg1;
             ui->textBrowser->append("<span style=\"color:red; font-weight:600; font-size:30pt\">Наша страна захвачена!</span>");
             ui->textBrowser->append("<span style=\"color:red; font-weight:600; font-size:13pt\">Войска государства №" + QString::number(arg1) + " уже входят в здание правительства!</span>");
+            ui->textBrowser->append("<img source=\":/loose.jpg\"/>");
             emit loose();
             break;
         case 3000:
@@ -170,7 +214,11 @@ void Report::addCodes(QString codes)
             break;
         case 3001:
             stream >> arg1;
-            ui->textBrowser->append("<span style=\"color:green; font-weight:600; font-size:13pt\">Наша система ПРО сбила " + QString::number(arg1) + " ракет!</span>");
+            if (arg1 > 0)
+            {
+            ui->textBrowser->append("<span style=\"color:green; font-weight:600; font-size:13pt\">Наша система ПРО сбила ракет:" + QString::number(arg1) + "</span>");
+            ui->textBrowser->append("<img source=\":/pro.jpg\"/>");
+            } else {ui->textBrowser->append("<span style=\"color:red; font-weight:600; font-size:13pt\">Наша система ПРО сбила ракет:" + QString::number(arg1) + "</span>");}
             break;
         }
     }

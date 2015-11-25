@@ -160,74 +160,78 @@ void MID::on_orderButton_clicked()
     PickTheMin *pickDial = new PickTheMin(this,4,c.args[2] = ui->numOfCountrySpinBox->value(), verbMatrix);
     connect(pickDial,SIGNAL(sendDataToParent(int,int)),this,SLOT(receiveDataFromDial(int,int)));
     pickDial->exec();
+
     c.args[3] = c.args[2];
     c.args[2] = ui->numOfCountrySpinBox->value();
     orderFlag = true;
 
     if (orderFlag)
     {
-        President *PresDial = new President(parentForm, false);
-        MinFin *FinDial = new MinFin(parentForm,false);
-        MinDef *defDial = new MinDef(parentForm,false);
-        KGB *KGBDial = new KGB(parentForm,100, false);
-        MID *MIDDial = new MID(false);
-        MINUST *MINUSTDial = new MINUST(parentForm,false);
-        MVD *MVDDial = new MVD(parentForm,false);
-        MinCom *MinComDial = new MinCom(parentForm,false);
-        MinHel *MinHelDial = new MinHel(parentForm,false);
-        Secretary *SecretaryDial = new Secretary(parentForm);
+        President *PresDial;
+        MinFin *FinDial;
+        MinDef *defDial;
+        KGB *KGBDial;
+        MID *MIDDial;
+        MINUST *MINUSTDial;
+        MVD *MVDDial;
+        MinCom *MinComDial;
+        MinHel *MinHelDial;
+        Secretary *SecretaryDial;
 
         switch (c.args[3])
         {
         case 1:
+            PresDial = new President(parentForm, false);
             connect(PresDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
             PresDial->exec();
             break;
         case 2:
+            FinDial = new MinFin(parentForm,false);
             connect(FinDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
             FinDial->exec();
             break;
         case 3:
+            defDial = new MinDef(parentForm,false);
             connect(defDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
             defDial->exec();
             break;
         case 4:
+            KGBDial = new KGB(parentForm,100, false);
             connect(KGBDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
             KGBDial->exec();
             break;
         case 5:
+            MIDDial = new MID(false);
             connect(MIDDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
             MIDDial->exec();
             break;
         case 6:
+            MINUSTDial = new MINUST(parentForm,false);
             connect(MINUSTDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
             MINUSTDial->exec();
             break;
         case 7:
+            MVDDial = new MVD(parentForm,false);
             connect(MVDDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
             MVDDial->exec();
             break;
         case 8:
+            MinComDial = new MinCom(parentForm,false);
             connect(MinComDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
             MinComDial->exec();
             break;
         case 9:
+            MinHelDial = new MinHel(parentForm,false);
             connect(MinHelDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
             MinHelDial->exec();
             break;
         case 10:
+            SecretaryDial = new Secretary(parentForm);
             connect(SecretaryDial,SIGNAL(sendDataToMainForm(Command)),this,SLOT(receivedFromMinForm(Command)));
             SecretaryDial->exec();
             break;
         }
     }
-
-    ui->approveButton->setEnabled(true);
-    ui->diversionButton->setDisabled(true);
-    ui->freeButton->setDisabled(true);
-    ui->hookButton->setDisabled(true);
-    ui->killButton->setDisabled(true);
-    ui->spyButton->setDisabled(true);
 }
 
 void MID::on_killButton_clicked()
@@ -302,5 +306,11 @@ void MID::on_numOfCountrySpinBox_valueChanged(int arg1)
         ui->orderButton->setDisabled(true);
         ui->freeButton->setDisabled(true);
         ui->killButton->setDisabled(true);
+    }
+    else if (countOfAgents > 0)
+    {
+        ui->orderButton->setEnabled(true);
+        ui->freeButton->setEnabled(true);
+        ui->killButton->setEnabled(true);
     }
 }

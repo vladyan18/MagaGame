@@ -156,7 +156,7 @@
     </rect>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: 1.000.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Попытаться засудить страну. Проигравший в суде получает -20% к настроению.&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;Час суда с Павлом Астаховым&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Стоимость: 1.000.000&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Попытаться засудить страну. Проигравший в суде получает -20% к настроению.&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;Час суда с Павлом Астаховым&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Подать иск

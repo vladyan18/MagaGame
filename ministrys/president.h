@@ -34,6 +34,8 @@ private slots:
 
     void on_giveFacButton_clicked();
 
+    void on_giveMoney_clicked();
+
 private:
     Ui::President *ui;
 };

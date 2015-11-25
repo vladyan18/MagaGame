@@ -45,6 +45,11 @@ GetNumDialog::GetNumDialog(IMinister *prnt, int mode,int nextDialMode, int min, 
         ui->spinBox->setSingleStep(10);
         this->setWindowTitle("Выбор силы");
         break;
+    case 8:
+        ui->label->setText("Введите ставку:");
+        ui->spinBox->setSingleStep(500000);
+        this->setWindowTitle("Выбор ставки");
+        break;
     }
 
     if (max >= min)
@@ -60,7 +65,7 @@ GetNumDialog::GetNumDialog(IMinister *prnt, int mode,int nextDialMode, int min, 
         ui->spinBox->setDisabled(true);
     }
 
-    if (max == 0)
+    if (max == 0 || max < min)
     {
         prnt->c.args[0] = -1;
         prnt->c.args[1] = -1;
@@ -110,6 +115,10 @@ void GetNumDialog::on_pushButton_clicked()
         prnt->setEnabled(true);
         break;
     case 7:
+        prnt->c.args[3] = ui->spinBox->value();
+        prnt->setEnabled(true);
+        break;
+    case 8:
         prnt->c.args[3] = ui->spinBox->value();
         prnt->setEnabled(true);
         break;
@@ -163,5 +172,10 @@ void GetNumDialog::on_spinBox_valueChanged(int arg1)
     if (mode == 7 && (arg1 % 10 != 0))
     {
         ui->spinBox->setValue((arg1 / 10) * 10);
+    }
+
+    if (mode == 8 && (arg1 % 500000 != 0))
+    {
+        ui->spinBox->setValue((arg1 / 500000) * 500000);
     }
 }

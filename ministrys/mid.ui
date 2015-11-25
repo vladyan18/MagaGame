@@ -180,7 +180,7 @@
     </rect>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: 1.500.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Сорвать действия указанного министерства в указанной стране&lt;/span&gt;&lt;span style=&quot; font-size:7pt;&quot;&gt;, устроив пенную вечеринку в отделе.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: 1.500.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Сорвать действия указанного министерства в указанной стране&lt;/span&gt;&lt;span style=&quot; font-size:7pt;&quot;&gt;, устроив пенную вечеринку в отделе.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Совершить 
@@ -197,7 +197,7 @@
     </rect>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: 3.000.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Попытаться получить полный контроль над ролью.&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;Come crawling faster&lt;br/&gt;Obey your Master&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: 3.000.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Попытаться получить полный контроль над ролью.&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;Come crawling faster&lt;br/&gt;Obey your Master&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Завербовать
@@ -214,7 +214,7 @@
     </rect>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Отпустить завербованного министра. Его страна узнает об этом, но не узнает, кто это сделал.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Отпустить завербованного министра. Его страна узнает об этом, но не узнает, кто это сделал.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Отпустить
@@ -231,7 +231,7 @@
     </rect>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Приказать завербованному министру что-либо.&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;Master of Puppets I'm pulling your strings&lt;br/&gt;Twisting your mind, smashing your dreams&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Приказать завербованному министру что-либо.&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;Master of Puppets I'm pulling your strings&lt;br/&gt;Twisting your mind, smashing your dreams&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Приказать 
@@ -248,7 +248,7 @@
     </rect>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: 3.000.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Убитый министр откатывается до первого уровня и не может ничего делать в следующем ходу. &lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;Die, die, die my darling&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: 3.000.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Убитый министр откатывается до первого уровня и не может ничего делать в следующем ходу. &lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;ничего личного&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Убить
@@ -265,7 +265,7 @@
     </rect>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: 2.000.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Получение всей информации о роли. &lt;/span&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;чтение истории его браузера&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: 2.000.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Получение всей информации о роли. &lt;/span&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;чтение истории его браузера&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Установить слежку

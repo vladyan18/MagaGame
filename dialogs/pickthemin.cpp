@@ -41,9 +41,12 @@ PickTheMin::PickTheMin(IMinister *prnt, int com, int country, bool **verbMatrix,
     QDialog(parent),
     ui(new Ui::PickTheMin)
 {
+    verbedMatrix = verbMatrix;
     this->prnt = prnt;
     command = com;
     ui->setupUi(this);
+    mode = -1;
+    this->country = country;
 
     QString names[10] = {"Президент", "Министр финансов", "Министр обороны", "Глава КГБ",
                         "Министр иностранных дел", "Министр юстиции", "Министр внутренних дел",
@@ -70,9 +73,15 @@ PickTheMin::PickTheMin(IMinister *prnt, int com, int country, int mode, QWidget 
     ui->setupUi(this);
 
     if (mode == 1)
+    {
     ui->label->setText("Выберите две отрасли:");
+    ui->buttonBox->setDisabled(true);
+    }
     else
+    {
     ui->label->setText("Выберите отрасль:");
+    ui->buttonBox->setDisabled(true);
+    }
 
     this->setWindowTitle("Выбор отраслей");
 
@@ -172,6 +181,23 @@ void PickTheMin::on_comboBox_activated(int index)
         else
         ui->listWidget->addItem(names[index]);
     }
+    else if (mode == -1)
+    {
+        QString names[10] = {"Президент", "Министр финансов", "Министр обороны", "Глава КГБ",
+                                "Министр иностранных дел", "Министр юстиции", "Министр внутренних дел",
+                                "Министр по связям с общественностью", "Министр здравоохранения", "Секретарь"};
+        vector<QString> verbedNames;
+        for (int i = 1; i<=10; i++)
+            {
+            if (verbedMatrix[country-1][i-1])
+                {
+                verbedNames.push_back(names[i-1]);
+                }
+            }
+         ui->listWidget->addItem(verbedNames[index]);
+    }
+
+    if (mode == 1 && ui->listWidget->count() == 2) {ui->buttonBox->setEnabled(true);}
 
 
 }

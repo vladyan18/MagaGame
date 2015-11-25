@@ -33,13 +33,13 @@
 #define COST_OF_INVESTMENT       2000000
 #define COST_OF_RAID             500000
 #define COST_OF_FINDING_MINISTER 3000000
-#define COST_OF_MINISTER_DEFENCE 1000000
+#define COST_OF_MINISTER_DEFENCE 500000
 #define COST_OF_DIVERSION        1500000
 #define COST_OF_HOOKING          3000000
 #define COST_OF_KILLING          3000000
 #define COST_OF_SPY              2000000
 #define COST_OF_COURT            1000000
-#define COST_OF_SUPRESSION       500000
+#define COST_OF_SUPRESSION       1000000
 #define COST_OF_CHECK_MIN        500000
 #define COST_OF_AREST            1500000
 #define COST_OF_CLAIM            1000000
@@ -60,13 +60,17 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    QFile inp("dataFromServer.txt");
+    inp.open(QFile::WriteOnly);
+    inp.close();
+
     ui->setupUi(this);
 
     transmitter = new NetTransmitter(this);
     namesOfMins = new QString[10] {"президента", "министра финансов", "министра обороны", "главы КГБ",
                         "министра иностранных дел", "министра юстиции", "министра внутренних дел",
-                        "министра по связям с общественностью", "министра здравоохранения", "заместителя"};
-    listSize = 20;
+                        "министра по связям с общественностью", "министра здравоохранения", "секретаря"};
+    listSize = 1;
     cmds = new List[listSize];
     repDial = new Report();
     connect (repDial, SIGNAL(loose()), this, SLOT(loose()));
@@ -191,6 +195,7 @@ void MainWindow::on_statButton_clicked()
 
 void MainWindow::receivedFromForm(Command c)
 {
+    if (c.args[1] == -1) c.args[0] = -1;
     switch (c.args[0]) {
     case 1: //Президент
         presidentSaid(c);
@@ -219,9 +224,17 @@ void MainWindow::receivedFromForm(Command c)
     case 9: //Министр здравоохранения
         minHelSaid(c);
         break;
-    case 10: //Заместитель
+    case 10: //Секретарь
         zamSaid(c);
         break;
+    }
+    if (c.args[0] != -1 && cmds[listSize - 1].command != -1)
+    {
+    if (ui->listWidget->currentRow() == listSize - 1)
+    {
+    on_incListSizeButton_clicked();
+    }
+    ui->listWidget->setCurrentRow(ui->listWidget->currentRow() + 1);
     }
 }
 
@@ -303,10 +316,12 @@ void MainWindow::checkBlocks()
             switch (cmds[i].command)
             {
             case -2:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1; cmds[i].text = QString::number(i+1) + ":"; cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 0:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             }
             break;
@@ -314,13 +329,16 @@ void MainWindow::checkBlocks()
             switch (cmds[i].command)
             {
             case -2:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 0:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 1:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             }
 
@@ -329,22 +347,28 @@ void MainWindow::checkBlocks()
             switch (cmds[i].command)
             {
             case -2:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 0:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 3:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 4:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 6:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 7:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             }
             break;
@@ -352,13 +376,16 @@ void MainWindow::checkBlocks()
             switch (cmds[i].command)
             {
             case -2:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 0:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 2:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             }
             break;
@@ -366,22 +393,28 @@ void MainWindow::checkBlocks()
             switch (cmds[i].command)
             {
             case -2:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 0:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 1:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 2:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 5:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 6:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             }
             break;
@@ -389,13 +422,16 @@ void MainWindow::checkBlocks()
             switch (cmds[i].command)
             {
             case -2:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 0:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 1:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             }
             break;
@@ -403,13 +439,16 @@ void MainWindow::checkBlocks()
             switch (cmds[i].command)
             {
             case -2:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 0:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 3:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             }
             break;
@@ -417,19 +456,24 @@ void MainWindow::checkBlocks()
             switch (cmds[i].command)
             {
             case -2:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 0:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 1:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 2:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 4:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             }
             break;
@@ -437,16 +481,20 @@ void MainWindow::checkBlocks()
             switch (cmds[i].command)
             {
             case -2:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 0:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 1:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             case 2:
-                mins[cmds[i].role - 1].isBlocked = true;
+                if (mins[cmds[i].role - 1].isBlocked) {cmds[i].command = -1;cmds[i].role = -1;cmds[i].text = QString::number(i+1) + ":";cmds[i].cost = 0;}
+                else mins[cmds[i].role - 1].isBlocked = true;
                 break;
             }
             break;
@@ -470,8 +518,13 @@ void MainWindow::on_listWidget_itemDoubleClicked()
     cmds[*row].arg[3] = -1;
     cmds[*row].arg[4] = -1;
     cmds[*row].cost = 0;
+    if (*row == listSize - 1 && *row > 0)
+    {
+        on_decListSizeButton_clicked();
+    }
     updateList();
     delete row;
+
 }
 
 void MainWindow::presidentSaid(Command c)
@@ -506,10 +559,7 @@ void MainWindow::presidentSaid(Command c)
         break;
     }
     updateList();
-    if (ui->listWidget->currentRow() != listSize - 1)
-    {
-    ui->listWidget->setCurrentRow(ui->listWidget->currentRow()+1);
-    }
+
     delete row;
 
 }
@@ -620,10 +670,7 @@ void MainWindow::minFinSaid(Command c)
         break;
     }
    updateList();
-   if (ui->listWidget->currentRow() != listSize - 1)
-   {
-   ui->listWidget->setCurrentRow(ui->listWidget->currentRow()+1);
-   }
+
    delete row;
 }
 
@@ -706,10 +753,7 @@ void MainWindow::minDefSaid(Command c)
         break;
     }
    updateList();
-   if (ui->listWidget->currentRow() != listSize - 1)
-   {
-   ui->listWidget->setCurrentRow(ui->listWidget->currentRow()+1);
-   }
+
    delete row;
 }
 
@@ -749,10 +793,7 @@ void MainWindow::KGBSaid(Command c)
         break;
     }
     updateList();
-    if (ui->listWidget->currentRow() != listSize - 1)
-    {
-    ui->listWidget->setCurrentRow(ui->listWidget->currentRow()+1);
-    }
+
     delete row;
 }
 
@@ -826,10 +867,7 @@ void MainWindow::midSaid(Command c)
         break;
     }
     updateList();
-    if (ui->listWidget->currentRow() != listSize - 1)
-    {
-    ui->listWidget->setCurrentRow(ui->listWidget->currentRow()+1);
-    }
+
     delete row;
 }
 
@@ -863,10 +901,7 @@ void MainWindow::minUstSaid(Command c)
     }
 
     updateList();
-    if (ui->listWidget->currentRow() != listSize - 1)
-    {
-    ui->listWidget->setCurrentRow(ui->listWidget->currentRow()+1);
-    }
+
     delete row;
 }
 
@@ -908,10 +943,7 @@ void MainWindow::MVDSaid(Command c)
     }
 
     updateList();
-    if (ui->listWidget->currentRow() != listSize - 1)
-    {
-    ui->listWidget->setCurrentRow(ui->listWidget->currentRow()+1);
-    }
+
     delete row;
 }
 
@@ -958,10 +990,7 @@ void MainWindow::minComSaid(Command c)
     }
 
     updateList();
-    if (ui->listWidget->currentRow() != listSize - 1)
-    {
-    ui->listWidget->setCurrentRow(ui->listWidget->currentRow()+1);
-    }
+
     delete row;
 }
 
@@ -1000,10 +1029,7 @@ void MainWindow::minHelSaid(Command c)
     }
 
     updateList();
-    if (ui->listWidget->currentRow() != listSize - 1)
-    {
-    ui->listWidget->setCurrentRow(ui->listWidget->currentRow()+1);
-    }
+
     delete row;
 }
 
@@ -1014,8 +1040,12 @@ void MainWindow::zamSaid(Command c) //TODO
     cmds[*row].command = c.args[1];
     switch(c.args[1])
     {
+    case 0:
+        cmds[*row].text = QString::number(*row+1) +": Повышение квалификации секретаря";
+        cmds[*row].cost= COST_OF_LVLUP;
+        break;
     case -2:
-        cmds[*row].text = QString::number(*row+1) +": Оказание помощи заместителем в делах " + namesOfMins[c.args[2] - 1];
+        cmds[*row].text = QString::number(*row+1) +": Оказание помощи секретарем в делах " + namesOfMins[c.args[2] - 1];
         if (c.args[3] != this->numTeam)
         {
             cmds[*row].text+= " в государстве №" + QString::number(c.args[3]);
@@ -1026,10 +1056,7 @@ void MainWindow::zamSaid(Command c) //TODO
         break;
     }
     updateList();
-    if (ui->listWidget->currentRow() != listSize - 1)
-    {
-    ui->listWidget->setCurrentRow(ui->listWidget->currentRow()+1);
-    }
+
     delete row;
 }
 
@@ -1037,17 +1064,25 @@ void MainWindow::zamSaid(Command c) //TODO
 
 void MainWindow::on_approvePlan_clicked()
 {
+    bool flag = false;
   QFile of("outdata.txt");
   QTextStream stream(&of);
   of.open(QFile::WriteOnly);
-  for (int i = 0; i<listSize; i++)
+  for (int i = 0; i<listSize; i++)      
   {
+      if (cmds[i].role > 0)
+      {
       stream << cmds[i].role << " " << cmds[i].command << " " << cmds[i].arg[0] << " " << cmds[i].arg[1] << " "
       << cmds[i].arg[2] << " " << cmds[i].arg[3] << " " << cmds[i].arg[4] << "\n";
+      flag = true;
+      }
   }
+  if (!flag) {stream << "-1 -1 -1 -1 -1 -1 -1";}
   of.close();
 
   repDial->saveList(cmds,listSize);
+  listSize = 1;
+  ui->listWidget->setCurrentRow(0);
 
   updateList();
 
@@ -1125,7 +1160,7 @@ void MainWindow::readData() // REMAKE
    stream.read(1);
 
    outputCodes = stream.readLine();
-   qDebug() << "OC: " << outputCodes;
+
 
    repDial->addCodes(outputCodes);
 
@@ -1176,6 +1211,7 @@ void MainWindow::onSokDisconnected()
     ui->connectionStatusDisp->setStyleSheet("background-color:red;");
     ui->nameEdit->setReadOnly(false);
     ui->numOfTeamSpinBox->setReadOnly(false);
+    this->setEnabled(true);
 }
 
 void MainWindow::readFromServer(int code)
@@ -1192,12 +1228,12 @@ void MainWindow::readFromServer(int code)
         updateList();
         break;
     case 4:
-            qDebug() << "Матрица вербовки";
+
         readVerbMatrix();
         break;
     case 5:
-        qDebug() << "Данные разведки";
-    readReconData();
+
+        readReconData();
     break;
     }
 }
@@ -1291,7 +1327,7 @@ void MainWindow::sendDataToServer()
 
 int MainWindow::checkForAgents()
 {
-        qDebug() << "Считаем агентов";
+
     int result = 0;
     for (int i = 0; i<countOfTeams; i++)
     {
@@ -1310,7 +1346,7 @@ void MainWindow::readVerbMatrix()
     inf.open(QFile::ReadOnly);
     QTextStream stream(&inf);
     int temp;
-    qDebug() << "Начинаем читать матрицу вербовки";
+
 
     bool **newVerbedMatrix;
     newVerbedMatrix = new bool*[countOfTeams];
@@ -1322,18 +1358,18 @@ void MainWindow::readVerbMatrix()
 
     verbedMatrix = newVerbedMatrix;
 
-    qDebug() << "Начинаем заполнение";
+
     for (int i = 0; i < countOfTeams; i++)
     {
         for (int j = 0; j < 10; j++)
         {
-                    qDebug() << "Заносим значение" << QString::number(j);
+
             stream >> temp;
             if (temp) verbedMatrix[i][j] = 1;
             else   verbedMatrix[i][j] = 0;
         }
     }
-        qDebug() << "Закончили читать матрицу вербовки";
+
     inf.close();
 }
 
@@ -1375,7 +1411,6 @@ void MainWindow::readReconData()
         {
 
             *stream2 >> com.args[i];
-            qDebug() << com.args[i];
         }
     dial->addCommand(mode,country,com);
 
@@ -1384,4 +1419,17 @@ void MainWindow::readReconData()
     dial->show();
     }
     inf.close();
+}
+
+void MainWindow::on_nameEdit_textChanged(const QString &arg1)
+{
+    if (ui->nameEdit->text()!="") {
+        ui->approvePlan->setEnabled(1);
+        ui->connectionStatusDisp->setEnabled(true);
+        nameOfThisTeam = ui->nameEdit->text();
+    } else {
+        ui->approvePlan->setDisabled(1);
+        ui->connectionStatusDisp->setDisabled(true);
+        nameOfThisTeam = "";
+    }
 }

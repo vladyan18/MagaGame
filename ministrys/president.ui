@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>652</width>
-    <height>473</height>
+    <height>489</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
     </font>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Уволенная роль теряет 50% lvl, не может совершать действия в течение следующего хода и освобождается от завербованности.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Уволенная роль теряет 50% lvl, не может совершать действия в течение следующего хода и освобождается от завербованности.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="locale">
     <locale language="English" country="Kenya"/>
@@ -43,9 +43,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>180</y>
+     <y>170</y>
      <width>611</width>
-     <height>16</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="orientation">
@@ -59,7 +59,7 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>380</y>
+     <y>400</y>
      <width>271</width>
      <height>71</height>
     </rect>
@@ -105,13 +105,13 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>210</y>
+     <y>240</y>
      <width>611</width>
      <height>41</height>
     </rect>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Передать свои родимые ракеты другой стране.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Передать свои родимые ракеты другой стране.&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;моя прелеесть!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Передать ядерные ракеты другой стране</string>
@@ -121,13 +121,13 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>260</y>
+     <y>290</y>
      <width>611</width>
      <height>41</height>
     </rect>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Передать свои родимые ракеты другой стране.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Передать свои родимые ракеты другой стране.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Передать системы ПРО другой стране</string>
@@ -137,16 +137,32 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>310</y>
+     <y>340</y>
      <width>611</width>
      <height>41</height>
     </rect>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Передать часть прибыли в одном из секторов экономики другому государству.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Передать часть прибыли в одном из секторов экономики другому государству.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Передать производственные мощности другой стране</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="giveMoney">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>190</y>
+     <width>611</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cтоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Передать нажитые непосильным трудом деньги другой стране.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="text">
+    <string>Передать деньги другой стране</string>
    </property>
   </widget>
  </widget>

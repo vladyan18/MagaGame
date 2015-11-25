@@ -1,7 +1,6 @@
 #include "minfin.h"
 #include "ui_minfin.h"
 
-int flag;
 
 MinFin::MinFin(MainWindow *its, bool isBlocked, QWidget *parent) :
     IMinister(parent),
@@ -46,7 +45,6 @@ void MinFin::on_investmentButton_clicked()
 {
    PickTheMin *dial = new PickTheMin(this,1,0,1,0);
    ui->playButton->setDisabled(1);
-   ui->transButton->setDisabled(true);
    dial->exec();
 }
 
@@ -54,7 +52,7 @@ void MinFin::on_playButton_clicked()
 {
     c.args[1] = 2;
 
-    GetNumDialog *dial = new GetNumDialog(this, 4,0,1, cash);
+    GetNumDialog *dial = new GetNumDialog(this, 8,0,500000, cash);
     this->setDisabled(true);
     dial->exec();
 
@@ -63,15 +61,7 @@ void MinFin::on_playButton_clicked()
     dial->exec();
 }
 
-void MinFin::on_transButton_clicked()
-{
-    c.args[1] = 3;
-    GetNumDialog *dial = new GetNumDialog(this, 4,1,1, cash);
-    this->setDisabled(true);
-    dial->exec();
 
-
-}
 
 void MinFin::receiveDataFromDial(int com,int choice, int choice2)
 {

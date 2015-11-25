@@ -34,7 +34,8 @@ private:
     int withoutMin;
     int command;
     vector<int> ministers;
-    int mode = 0;
+    int mode = 0, country;
+    bool **verbedMatrix;
     int choice;
     int choice2;
     int step = 1;

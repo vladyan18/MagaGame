@@ -40,9 +40,9 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>510</x>
+     <x>380</x>
      <y>250</y>
-     <width>201</width>
+     <width>331</width>
      <height>51</height>
     </rect>
    </property>
@@ -52,7 +52,7 @@
     </font>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: 2.000.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Увеличение дохода по 500.000 в двух сферах.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: 2.000.000&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Увеличение дохода по 500.000 в двух сферах.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Увеличить доход </string>
@@ -63,12 +63,12 @@
     <rect>
      <x>20</x>
      <y>250</y>
-     <width>201</width>
+     <width>331</width>
      <height>51</height>
     </rect>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: ставка, кратная 500к&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Попытаться отобрать деньги у других игроков на бирже. &lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;Или подарить им свои.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Стоимость: ставка, кратная 500к&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Попытаться отобрать деньги у других игроков на бирже. &lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;Или подарить им свои.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Играть на бирже</string>
@@ -100,27 +100,11 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="transButton">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>250</y>
-     <width>211</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;стоимость: -&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Передать нажитые непосильным трудом деньги другой стране.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="text">
-    <string>Совершить транш</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>40</y>
+     <y>50</y>
      <width>121</width>
      <height>111</height>
     </rect>
@@ -163,7 +147,7 @@
    <property name="geometry">
     <rect>
      <x>450</x>
-     <y>150</y>
+     <y>160</y>
      <width>251</width>
      <height>41</height>
     </rect>
